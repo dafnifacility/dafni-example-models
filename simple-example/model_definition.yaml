@@ -1,0 +1,31 @@
+kind: Model
+apiVersion: v1alpha1
+metadata:
+  displayName: Example Model
+  name: example-model
+  summary: Generates a Fibanacci sequence
+  description: >
+    An example Model designed for use with DAFNI.
+
+    This generates a Fibonacci sequence and saves it to a file.
+spec:
+  inputs:
+    env:
+      - name: SEQUENCE_LENGTH
+        title: Sequence length
+        desc: The number of items in the sequence.
+        type: int
+        default: 20
+        min: 5
+        
+      - name: SEQUENCE_F0
+        title: F0 start number
+        desc: The initial start value for the sequence.
+        type: int
+        default: 0
+        
+      - name: SEQUENCE_F1
+        title: F1 start number
+        desc: The second start value for the sequence.
+        type: int
+        default: 1

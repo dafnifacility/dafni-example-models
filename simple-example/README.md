@@ -1,0 +1,76 @@
+# Simple Model Example
+
+This is an example model. Here you should describe what the model does.
+
+This particular model generates a Fibonacci sequence. e.g.:
+
+```json
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34...]
+```
+
+You can set three inputs:
+
+- SEQUENCE_LENGTH - Dictates the count of numbers in the generated sequence
+- SEQUENCE_F0 - The first number to start the Fibonacci sequence with.
+- SEQUENCE_F1 - The second number to start the Fibonacci sequence with.
+
+The model generates a JSON file containing the sequence:
+
+```json
+{
+  "sequence": [0, 1, 1, 2, 3, 5]
+}
+```
+
+## Technical Info
+
+This model pulls in several environment variables and passes them into a piece of Python
+code. The Python code is built into a Docker image using the
+[provided Dockerfile](./Dockerfile).
+
+There are five files here:
+
+- _main.py_ - This is the file initially called by DAFNI. It is referenced in the
+  Dockerfile.
+- _work.py_ - This contains the main code for the model. Here, as an example, it is a
+  simple Fibonacci generator
+- _Dockerfile_ - Builds the container that will be run by DAFNI
+- _model_definition.yaml_ - Details of the model needed by the DAFNI ingest system.
+- _README.md_ - This file.
+
+## Dependencies
+
+This model requires [Python](https://www.python.org/) and
+[Docker](https://www.docker.com/) to be installed in order to build and run locally.
+
+## Running the Model
+
+You can run this example model from within the "simple-example" folder by doing the
+following:
+
+```bash
+python ./src/main.py
+```
+
+You can also run this model using Docker from within the same folder by doing:
+
+```bash
+docker build -t model-example .
+docker run model-example
+```
+
+You don't need to run the build step every time you want to run the model, you only need
+to re-run it if changes are made to the Dockerfile or any of the files that go into the
+Docker image.
+
+You can adjust the way it runs with the environmental variables:
+
+```bash
+docker run -e SEQUENCE_LENGTH=50 model-example
+```
+
+or
+
+```bash
+docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 model-example
+```
