@@ -1,13 +1,14 @@
 kind: Model
 apiVersion: v1alpha1
 metadata:
-  displayName: Example Model
-  name: example-model
+  displayName: Fibonacci Example
+  name: fibonacci-example
   summary: Generates a Fibanacci sequence
   description: >
     An example Model designed for use with DAFNI.
 
     This generates a Fibonacci sequence and saves it to a file.
+  type: testing
 spec:
   inputs:
     env:
