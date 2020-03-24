@@ -30,3 +30,8 @@ spec:
         desc: The second start value for the sequence.
         type: int
         default: 1
+  outputs:
+    datasets:
+      - name: sequence.json
+        type: json
+        desc: A Fibonacci sequence output from the Fibonacci Example Model.

@@ -7,7 +7,7 @@ SEQUENCE_LENGTH_DEFAULT = 20
 SEQUENCE_F0_DEFAULT = 0
 SEQUENCE_F1_DEFAULT = 1
 
-output_folder = Path("/output/")
+output_folder = Path("/data/outputs/")
 
 
 def main():
