@@ -1,0 +1,19 @@
+kind: Model
+apiVersion: v1alpha1
+metadata:
+  displayName: Hello Model
+  name: hello-model
+  summary: Echo a name
+  description: A tiny example Model designed for use with DAFNI. This outputs a txt file with Hello NAME.
+spec:
+  inputs:
+    env:
+      - name: NAME
+        title: A Name
+        desc: The name to be output.
+        type: string
+  outputs:
+    datasets:
+      - name: hello.txt
+        type: txt
+        desc: A basic text file with "Hello $NAME" in.

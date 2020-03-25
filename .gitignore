@@ -1,2 +1,5 @@
+# IntelliJ
+*.iml
 .idea
-simple-example/src/__pycache__
+
+**/__pycache__/*
