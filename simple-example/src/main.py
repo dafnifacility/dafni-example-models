@@ -7,7 +7,7 @@ SEQUENCE_LENGTH_DEFAULT = 20
 SEQUENCE_F0_DEFAULT = 0
 SEQUENCE_F1_DEFAULT = 1
 
-output_folder = Path("/output/")
+output_folder = Path("/data/outputs/")
 
 
 def main():
@@ -32,16 +32,6 @@ def main():
     output_file.write_text(json.dumps({"sequence": sequence}))
 
     print("Finished example model")
-
-
-def is_int(number):
-    """ Check is a real number """
-    try:
-        int(number)
-        return True
-    except (ValueError, TypeError):
-        pass
-    return False
 
 
 if __name__ == "__main__":
