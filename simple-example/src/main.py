@@ -34,15 +34,5 @@ def main():
     print("Finished example model")
 
 
-def is_int(number):
-    """ Check is a real number """
-    try:
-        int(number)
-        return True
-    except (ValueError, TypeError):
-        pass
-    return False
-
-
 if __name__ == "__main__":
     main()
