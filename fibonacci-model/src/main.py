@@ -14,7 +14,7 @@ output_folder = Path("/data/outputs/")
 
 def main():
 
-    print("Starting example model")
+    print("Starting fibonacci model")
 
     # Read values from environment variables but use default values if they don't exist
     sequence_length = os.getenv("SEQUENCE_LENGTH", SEQUENCE_LENGTH_DEFAULT)
@@ -45,7 +45,7 @@ def main():
     output_file = output_folder.joinpath("sequence.json")
     output_file.write_text(json.dumps({"sequence": sequence}))
 
-    print("Finished example model")
+    print("Finished fibonacci model")
 
 
 def is_int(value):
