@@ -5,6 +5,7 @@ from pathlib import Path
 from work import do_work
 
 SEQUENCE_LENGTH_DEFAULT = 20
+SEQUENCE_LENGTH_MINIMUM = 2
 SEQUENCE_F0_DEFAULT = 0
 SEQUENCE_F1_DEFAULT = 1
 
@@ -21,30 +22,35 @@ def main():
     sequence_f1 = os.getenv("SEQUENCE_F1", SEQUENCE_F1_DEFAULT)
     
     # Check each of the values are in an acceptable format for this model
-    try:
-        sequence_length = int( sequence_length )
-    except ValueError:
+    if not is_int(sequence_length) :
         sys.exit("Error: SEQUENCE_LENGTH must be a whole number")
 
-    if sequence_length <= 0:
-        sys.exit("Error: SEQUENCE_LENGTH must be greater than zero")
+    if not int(sequence_length) >= SEQUENCE_LENGTH_MINIMUM:
+        sys.exit(f"Error: SEQUENCE_LENGTH must be a minimum of {SEQUENCE_LENGTH_MINIMUM-1}")
     
-    try:
-        sequence_f0 = int(sequence_f0)
-        sequence_f1 = int(sequence_f1)
-    except ValueError:
-        sys.exit("Error: SEQUENCE_F0 and SEQUENCE_F1 must be whole numbers")
+    if not is_int(sequence_f0) :
+        sys.exit("Error: SEQUENCE_F0 must be whole number")
+        
+    if not is_int(sequence_f1) :
+        sys.exit("Error: SEQUENCE_F1 must be whole number")
     
     # Call main work
-    sequence = do_work(sequence_length, sequence_f0, sequence_f1)
+    sequence = do_work( int(sequence_length), int(sequence_f0), int(sequence_f1) )
 
     # Output the results to a file
     output_folder.mkdir(parents=True, exist_ok=True)
     output_file = output_folder.joinpath("sequence.json")
     output_file.write_text(json.dumps({"sequence": sequence}))
 
-
     print("Finished example model")
+
+
+def is_int(value):
+    try:
+        int(value)
+        return True
+    except ValueError:
+        return False
 
 
 if __name__ == "__main__":
