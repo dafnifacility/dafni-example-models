@@ -35,7 +35,7 @@ There are five files here:
 - _[work.py](./src/work.py)_ - This contains the main code for the model. Here, as an example, it is a
   simple Fibonacci generator
 - _[Dockerfile](./Dockerfile)_ - Builds the container that will be run by DAFNI
-- _[model_definition.yaml](./model_definition.yaml)_ - A machine readable file with defining the model.
+- _[model_definition.yaml](./model_definition.yaml)_ - A machine readable file used to define the model.
   This information will be shown to other users who may wish to use your model. 
 - _README.md_ - This helpful file. It should contain detailed information about the model.
 

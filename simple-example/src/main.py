@@ -24,8 +24,9 @@ def main():
     # Check each of the values are in an acceptable format for this model
     if not is_int(sequence_length) :
         sys.exit("Error: SEQUENCE_LENGTH must be a whole number")
-
-    if not int(sequence_length) >= SEQUENCE_LENGTH_MINIMUM:
+        
+    sequence_length = int(sequence_length)
+    if not sequence_length >= SEQUENCE_LENGTH_MINIMUM:
         sys.exit(f"Error: SEQUENCE_LENGTH must be a minimum of {SEQUENCE_LENGTH_MINIMUM-1}")
     
     if not is_int(sequence_f0) :
@@ -35,7 +36,7 @@ def main():
         sys.exit("Error: SEQUENCE_F1 must be whole number")
     
     # Call main work
-    sequence = do_work( int(sequence_length), int(sequence_f0), int(sequence_f1) )
+    sequence = do_work( sequence_length, int(sequence_f0), int(sequence_f1) )
 
     # Output the results to a file
     output_folder.mkdir(parents=True, exist_ok=True)

@@ -21,13 +21,13 @@ spec:
         
       - name: SEQUENCE_F0
         title: F0 start number
-        desc: The initial start value for the sequence. Must be an integer.
+        desc: The initial start value for the sequence.
         type: int
         default: 0
         
       - name: SEQUENCE_F1
         title: F1 start number
-        desc: The second start value for the sequence. Must be an integer.
+        desc: The second start value for the sequence.
         type: int
         default: 1
   outputs:
