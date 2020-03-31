@@ -4,8 +4,8 @@ This is an example model. Here you should describe what the model does.
 
 This particular model generates a Fibonacci sequence. e.g.:
 
-```json
-[0, 1, 1, 2, 3, 5, 8, 13, 21, 34...]
+```
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...]
 ```
 
 You can set three inputs:
@@ -30,13 +30,14 @@ code. The Python code is built into a Docker image using the
 
 There are five files here:
 
-- _main.py_ - This is the file initially called by DAFNI. It is referenced in the
+- _[main.py](./src/main.py)_ - This is the file initially called by DAFNI. It is referenced in the
   Dockerfile.
-- _work.py_ - This contains the main code for the model. Here, as an example, it is a
+- _[work.py](./src/work.py)_ - This contains the main code for the model. Here, as an example, it is a
   simple Fibonacci generator
-- _Dockerfile_ - Builds the container that will be run by DAFNI
-- _model_definition.yaml_ - Details of the model needed by the DAFNI ingest system.
-- _README.md_ - This file.
+- _[Dockerfile](./Dockerfile)_ - Builds the container that will be run by DAFNI
+- _[model_definition.yaml](./model_definition.yaml)_ - A machine readable file used to define the model.
+  This information will be shown to other users who may wish to use your model. 
+- _README.md_ - This helpful file. It should contain detailed information about the model.
 
 ## Dependencies
 
@@ -63,7 +64,7 @@ You don't need to run the build step every time you want to run the model, you o
 to re-run it if changes are made to the Dockerfile or any of the files that go into the
 Docker image.
 
-You can adjust the way it runs with the environmental variables:
+You can adjust the way it runs with the environment variables:
 
 ```bash
 docker run -e SEQUENCE_LENGTH=50 model-example
