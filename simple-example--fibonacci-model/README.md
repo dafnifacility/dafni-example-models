@@ -1,4 +1,4 @@
-# Simple Model Example
+# Fibonacci Model
 
 This is an example model. Here you should describe what the model does.
 
@@ -56,8 +56,8 @@ python ./src/main.py
 You can also run this model using Docker from within the same folder by doing:
 
 ```bash
-docker build -t model-example .
-docker run model-example
+docker build -t fibonacci-model .
+docker run fibonacci-model
 ```
 
 You don't need to run the build step every time you want to run the model, you only need
@@ -67,11 +67,11 @@ Docker image.
 You can adjust the way it runs with the environment variables:
 
 ```bash
-docker run -e SEQUENCE_LENGTH=50 model-example
+docker run -e SEQUENCE_LENGTH=50 fibonacci-model
 ```
 
 or
 
 ```bash
-docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 model-example
+docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-model
 ```

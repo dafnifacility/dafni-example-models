@@ -1,8 +1,8 @@
 kind: Model
 apiVersion: v1alpha1
 metadata:
-  displayName: Fibonacci Example
-  name: fibonacci-example
+  displayName: Fibonacci
+  name: fibonacci
   summary: Generates a Fibanacci sequence
   description: >
     An example Model designed for use with DAFNI.
