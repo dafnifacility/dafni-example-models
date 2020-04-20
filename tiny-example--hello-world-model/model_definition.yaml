@@ -7,6 +7,7 @@ metadata:
   description: >
     A tiny example Model designed for use with DAFNI. This outputs a txt file with "Hello $NAME" where $NAME is a
     configurable input to the Model. $NAME defaults to "World".
+  type: testing
 spec:
   inputs:
     env:
