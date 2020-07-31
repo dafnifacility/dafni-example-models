@@ -1,5 +1,5 @@
 kind: Model
-apiVersion: v1alpha1
+apiVersion: v1alpha3
 metadata:
   displayName: Fibonacci
   name: fibonacci
@@ -15,20 +15,20 @@ spec:
       - name: SEQUENCE_LENGTH
         title: Sequence length
         desc: The number of items in the sequence.
-        type: int
+        type: integer
         default: 20
         min: 2
         
       - name: SEQUENCE_F0
         title: F0 start number
         desc: The initial start value for the sequence.
-        type: int
+        type: integer
         default: 0
         
       - name: SEQUENCE_F1
         title: F1 start number
         desc: The second start value for the sequence.
-        type: int
+        type: integer
         default: 1
   outputs:
     datasets:
