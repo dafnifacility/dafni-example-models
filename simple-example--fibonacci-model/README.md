@@ -35,7 +35,7 @@ There are five files here:
 - _[work.py](./src/work.py)_ - This contains the main code for the model. Here, as an example, it is a
   simple Fibonacci generator
 - _[Dockerfile](./Dockerfile)_ - Builds the container that will be run by DAFNI
-- _[model_definition.yaml](./model_definition.yaml)_ - A machine readable file used to define the model.
+- _[model_definition.yaml](./model_definition.yaml)_ - A machine-readable file used to define the model.
   This information will be shown to other users who may wish to use your model. 
 - _README.md_ - This helpful file. It should contain detailed information about the model.
 
@@ -74,4 +74,18 @@ or
 
 ```bash
 docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-model
+```
+
+## Uploading to DAFNI
+
+You will need to create a file from your docker image to upload it. Check out the detailed instructions online at [Docs](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/) but you can create it with:
+
+```bash
+docker save -o fibonacci-model.tar finbonacci-model
+```
+
+You can then also compress it before uploading:
+
+```bash
+gzip example-model.tar
 ```
