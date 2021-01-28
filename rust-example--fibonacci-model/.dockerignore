@@ -1,0 +1,4 @@
+
+/rust-example--fibonacci-model/fibonacci-model/target/
+/rust-example--fibonacci-model/fibonacci-model/src/sequence.json
+*.tar.gz

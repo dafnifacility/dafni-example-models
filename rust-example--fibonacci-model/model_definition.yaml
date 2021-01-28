@@ -1,0 +1,38 @@
+kind: Model
+apiVersion: v1alpha4
+metadata:
+  displayName: Rust Fibonacci
+  name: fibonacci
+  summary: Generates a Fibonacci sequence using the Rust language
+  description: >
+    An example Model designed for use with DAFNI.
+
+    This generates a Fibonacci sequence and saves it to a json file.
+  type: testing
+spec:
+  inputs:
+    env:
+      - name: SEQUENCE_LENGTH
+        title: Sequence length
+        desc: The number of items in the sequence.
+        type: integer
+        default: 20
+        min: 2
+        max: 93
+        
+      - name: SEQUENCE_F0
+        title: F0 start number
+        desc: The initial start value for the sequence.
+        type: integer
+        default: 0
+        
+      - name: SEQUENCE_F1
+        title: F1 start number
+        desc: The second start value for the sequence.
+        type: integer
+        default: 1
+  outputs:
+    datasets:
+      - name: sequence.json
+        type: json
+        desc: A Fibonacci sequence output from the Fibonacci Example Model.
