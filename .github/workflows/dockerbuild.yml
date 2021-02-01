@@ -23,6 +23,12 @@ jobs:
         tags: latest
         tag_with_sha: true
         tag_with_ref: true
+    -
+      name: Upload to DAFNI
+      run: |
+        docker pull docker.pkg.github.com/dafnifacility/dafni-example-models/simple-example--fibonacci-model:latest
+        docker save -o simple-example.tar simple-example:latest
+        gzip simple-example.tar
   publish-tiny-example-image:
     name: Publish Tiny Example Image
     runs-on: ubuntu-latest
