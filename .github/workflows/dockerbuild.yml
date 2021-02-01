@@ -1,0 +1,45 @@
+name: DockerBuild
+
+on: push
+
+jobs:
+  publish-simple-example-image:
+    name: Publish Simple Example Image
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout code
+      uses: actions/checkout@v2
+    -
+      name: DockerBuild
+      uses: docker/build-push-action@v1
+      with:
+        dockerfile: simple-example--fibonacci-model/Dockerfile
+        path: ./simple-example--fibonacci-model
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: dafnifacility/dafni-example-models/simple-example--fibonacci-model
+        tags: latest
+        tag_with_sha: true
+        tag_with_ref: true
+  publish-tiny-example-image:
+    name: Publish Tiny Example Image
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout code
+      uses: actions/checkout@v2
+    -
+      name: DockerBuild
+      uses: docker/build-push-action@v1
+      with:
+        dockerfile: tiny-example--hello-world-model/Dockerfile
+        path: ./tiny-example--hello-world-model
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: dafnifacility/dafni-example-models/tiny-example--hello-world-model
+        tags: latest
+        tag_with_sha: true
+        tag_with_ref: true
