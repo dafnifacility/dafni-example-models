@@ -1,5 +1,5 @@
 kind: Model
-apiVersion: v1alpha3
+apiVersion: v1alpha4
 metadata:
   displayName: Hello World
   name: hello-world

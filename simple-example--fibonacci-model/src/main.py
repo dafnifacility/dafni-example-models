@@ -26,9 +26,9 @@ def main():
         sys.exit("Error: SEQUENCE_LENGTH must be a whole number")
 
     sequence_length = int(sequence_length)
-    if not sequence_length >= SEQUENCE_LENGTH_MINIMUM:
+    if sequence_length < SEQUENCE_LENGTH_MINIMUM:
         sys.exit(
-            f"Error: SEQUENCE_LENGTH must be a minimum of {SEQUENCE_LENGTH_MINIMUM-1}"
+            f"Error: SEQUENCE_LENGTH must be a minimum of {SEQUENCE_LENGTH_MINIMUM}"
         )
 
     if not is_int(sequence_f0):
