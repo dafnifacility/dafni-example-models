@@ -3,20 +3,17 @@ name: DockerBuild
 on: push
 
 jobs:
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: dafni-service-account
-          password: ${{ secrets.SERVICE_ACCOUNT }}
   publish-simple-example-image:
     name: Publish Simple Example Image
     runs-on: ubuntu-latest
     steps:
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: dafni-service-account
+        password: ${{ secrets.SERVICE_ACCOUNT }}
     -
       name: Checkout code
       uses: actions/checkout@v2
@@ -43,6 +40,13 @@ jobs:
     name: Publish Tiny Example Image
     runs-on: ubuntu-latest
     steps:
+    -
+      name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: dafni-service-account
+        password: ${{ secrets.SERVICE_ACCOUNT }}
     -
       name: Checkout code
       uses: actions/checkout@v2
