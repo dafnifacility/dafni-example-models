@@ -62,4 +62,3 @@ jobs:
         gzip tiny-example.tar
         ls -la
         pip install -r requirements.txt
-        python uploadFile.py
