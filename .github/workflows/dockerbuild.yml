@@ -30,6 +30,7 @@ jobs:
         docker pull ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
         docker save -o simple-example.tar ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
         gzip simple-example.tar
+        pip install -r requirements.txt
         python uploadFile.py
   publish-tiny-example-image:
     name: Publish Tiny Example Image
@@ -58,4 +59,5 @@ jobs:
         docker pull ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
         docker save -o tiny-example.tar ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
         gzip simple-example.tar
+        pip install -r requirements.txt
         python uploadFile.py
