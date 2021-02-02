@@ -36,6 +36,7 @@ jobs:
         docker pull docker.pkg.github.com/dafnifacility/dafni-example-models/simple-example--fibonacci-model:latest
         docker save -o simple-example.tar simple-example--fibonacci-model:latest
         gzip simple-example.tar
+        python uploadFile.py
   publish-tiny-example-image:
     name: Publish Tiny Example Image
     runs-on: ubuntu-latest
