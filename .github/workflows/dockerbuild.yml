@@ -59,7 +59,7 @@ jobs:
         echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
         docker pull ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
         docker save -o tiny-example.tar ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
-        gzip simple-example.tar
+        gzip tiny-example.tar
         ls -la
         pip install -r requirements.txt
         python uploadFile.py
