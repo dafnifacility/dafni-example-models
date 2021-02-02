@@ -27,8 +27,8 @@ jobs:
       name: Upload to DAFNI
       run: |
         echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
-        docker pull docker.pkg.github.com/dafnifacility/dafni-example-models/simple-example--fibonacci-model:latest
-        docker save -o simple-example.tar simple-example--fibonacci-model:latest
+        docker pull ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
+        docker save -o simple-example.tar ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
         gzip simple-example.tar
         python uploadFile.py
   publish-tiny-example-image:
@@ -55,7 +55,7 @@ jobs:
       name: Upload to DAFNI
       run: |
         echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
-        docker pull docker.pkg.github.com/dafnifacility/dafni-example-models/tiny-example--hello-world-model:latest
-        docker save -o tiny-example.tar tiny-example--hello-world-model:latest
+        docker pull ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
+        docker save -o tiny-example.tar ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
         gzip simple-example.tar
         python uploadFile.py
