@@ -8,28 +8,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -
-      name: Login to Docker Hub
+      name: Checkout code
+      uses: actions/checkout@v2
+    -
+      name: Login to ghcr Hub
       uses: docker/login-action@v1
       with:
         registry: ghcr.io
         username: dafni-service-account
         password: ${{ secrets.SERVICE_ACCOUNT }}
     -
-      name: Checkout code
-      uses: actions/checkout@v2
-    -
       name: DockerBuild
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
-        dockerfile: simple-example--fibonacci-model/Dockerfile
-        path: ./simple-example--fibonacci-model
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        file: simple-example--fibonacci-model/Dockerfile
+        push: true
+        context: ./simple-example--fibonacci-model
         registry: ghcr.io
-        repository: dafnifacility/simple-example--fibonacci-model
-        tags: latest
-        tag_with_sha: true
-        tag_with_ref: true
+        cache-from: type=registry,ref=dafnifacility/simple-example--fibonacci-model:latest
+        tags: dafnifacility/simple-example--fibonacci-model:latest
     -
       name: Upload to DAFNI
       run: |
@@ -57,8 +54,8 @@ jobs:
       with:
         dockerfile: tiny-example--hello-world-model/Dockerfile
         path: ./tiny-example--hello-world-model
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: dafni-service-account
+        password: ${{ secrets.SERVICE_ACCOUNT }}
         registry: ghcr.io
         repository: dafnifacility/tiny-example--hello-world-model
         tags: latest
