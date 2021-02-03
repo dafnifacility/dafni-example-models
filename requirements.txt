@@ -1,4 +1,4 @@
+setuptools
 requests==2.25.1
 pathlib==1.0.1
 dafni-cli-dafni-facility==0.0.1
-setuptools
