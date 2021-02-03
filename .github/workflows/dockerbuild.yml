@@ -32,7 +32,7 @@ jobs:
         gzip simple-example.tar
         ls -la
         pip install -r requirements.txt
-        python uploadFile.py
+        python uploadFile.py --model-definition ./simple-example--fibonacci-model/model_definition.yaml --image simple-example.tar.gz --username ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }} --password ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }} --version-message "Uploaded from GitHub workflow" --parent-model "abdffa58-f0ee-482a-b09f-87d3dc16f31a"
   publish-tiny-example-image:
     name: Publish Tiny Example Image
     runs-on: ubuntu-latest
@@ -61,4 +61,4 @@ jobs:
         docker save -o tiny-example.tar ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
         gzip tiny-example.tar
         ls -la
-        pip install -r requirements.txt
+        python uploadFile.py --model-definition ./tiny-example--hello-world-model/model_definition.yaml --image tiny-example.tar.gz --username ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }} --password ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }} --version-message "Uploaded from GitHub workflow" 
