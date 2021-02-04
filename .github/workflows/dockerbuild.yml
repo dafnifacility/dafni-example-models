@@ -1,6 +1,9 @@
 name: DockerBuild
 
-on: push
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   publish-simple-example-image:
