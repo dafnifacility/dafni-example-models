@@ -67,6 +67,6 @@ jobs:
       with:
         definition-path: './tiny-example--hello-world-model/model_definition.yaml'
         image-path: './tiny-example.tar.gz'
-        username:  ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }}
+        username: 'model-uploader'
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
