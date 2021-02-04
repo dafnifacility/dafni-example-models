@@ -3,37 +3,43 @@ name: DockerBuild
 on: push
 
 jobs:
-  # publish-simple-example-image:
-  #   name: Publish Simple Example Image
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   -
-  #     name: Checkout code
-  #     uses: actions/checkout@v2
-  #   -
-  #     name: DockerBuild
-  #     uses: docker/build-push-action@v1
-  #     with:
-  #       dockerfile: simple-example--fibonacci-model/Dockerfile
-  #       path: ./simple-example--fibonacci-model
-  #       username: dafni-service-account
-  #       password: ${{ secrets.SERVICE_ACCOUNT }}
-  #       registry: ghcr.io
-  #       repository: dafnifacility/simple-example--fibonacci-model
-  #       tags: latest
-  #       tag_with_sha: true
-  #       tag_with_ref: true
-  #   -
-  #     name: Upload to DAFNI
-  #     run: |
-  #       echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
-  #       docker pull ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
-  #       docker save -o simple-example.tar ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
-  #       gzip simple-example.tar
-  #       ls -la
-  #       python3 -m pip install -U pip
-  #       python3 -m pip install -r requirements.txt
-  #       python3 uploadFile.py --model-definition ./simple-example--fibonacci-model/model_definition.yaml --image simple-example.tar.gz --username ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }} --password ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }} --version-message "Uploaded from GitHub workflow" --parent-model "abdffa58-f0ee-482a-b09f-87d3dc16f31a"
+  publish-simple-example-image:
+    name: Publish Simple Example Image
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout code
+      uses: actions/checkout@v2
+    -
+      name: DockerBuild
+      uses: docker/build-push-action@v1
+      with:
+        dockerfile: simple-example--fibonacci-model/Dockerfile
+        path: ./simple-example--fibonacci-model
+        username: dafni-service-account
+        password: ${{ secrets.SERVICE_ACCOUNT }}
+        registry: ghcr.io
+        repository: dafnifacility/simple-example--fibonacci-model
+        tags: latest
+        tag_with_sha: true
+        tag_with_ref: true
+    -
+      name: Compress docker image
+      run: |
+        echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
+        docker pull ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
+        docker save -o simple-example.tar ghcr.io/dafnifacility/simple-example--fibonacci-model:latest
+        gzip simple-example.tar
+    -
+      name: Upload To DAFNI
+      uses: dafnifacility/dafni-model-uploader@v1.4
+      with:
+        definition-path: './simple-example--fibonacci-model/model_definition.yaml'
+        image-path: './simple-example.tar.gz'
+        username: 'model-uploader'
+        password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
+        version-message: "Uploaded from GitHub workflow"
+        parent-model: "abdffa58-f0ee-482a-b09f-87d3dc16f31a"
   publish-tiny-example-image:
     name: Publish Tiny Example Image
     runs-on: ubuntu-latest
@@ -55,7 +61,7 @@ jobs:
         tag_with_sha: true
         tag_with_ref: true
     -
-      name: Upload to DAFNI
+      name: Compress docker image
       run: |
         echo ${{ secrets.SERVICE_ACCOUNT }} | docker login ghcr.io -u dafni-service-account --password-stdin
         docker pull ghcr.io/dafnifacility/tiny-example--hello-world-model:latest
@@ -70,3 +76,4 @@ jobs:
         username: 'model-uploader'
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
+        parent-model: "da6d001a-d58e-4931-8e9f-af653e5f14f1"
