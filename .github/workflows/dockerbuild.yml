@@ -63,6 +63,6 @@ jobs:
         gzip tiny-example.tar
         ls -la
         python --version
-        pip3 install -U pip3
-        pip3 install -r requirements.txt
+        pip install -U pip
+        pip install -r requirements.txt
         python3 uploadFile.py --model-definition ./tiny-example--hello-world-model/model_definition.yaml --image tiny-example.tar.gz --username ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }} --password ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }} --version-message "Uploaded from GitHub workflow" 
