@@ -64,7 +64,7 @@ jobs:
         ls -la
         python --version
         pip --version
-        python3 -m pip install -U pip
+        python3 -m pip install -U pip setuptools
         pip --version
         python3 -m pip install -r requirements.txt
         python3 uploadFile.py --model-definition ./tiny-example--hello-world-model/model_definition.yaml --image tiny-example.tar.gz --username ${{ secrets.DAFNI_SERVICE_ACCOUNT_USER }} --password ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }} --version-message "Uploaded from GitHub workflow" 
