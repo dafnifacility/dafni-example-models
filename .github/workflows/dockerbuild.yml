@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - rose/add-auto-uploader
 
 jobs:
   publish-simple-example-image:
