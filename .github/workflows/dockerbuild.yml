@@ -30,7 +30,7 @@ jobs:
     -
       name: Compress docker image
       run: |
-        docker build -t simple-example ./simple-example--fibonacci-model/Dockerfile
+        docker build -t simple-example ./simple-example--fibonacci-model/
         docker save -o simple-example.tar simple-example:latest
         gzip simple-example.tar
     -
@@ -66,7 +66,7 @@ jobs:
     -
       name: Compress docker image
       run: |
-        docker build -t tiny-example ./tiny-example--hello-world-model/Dockerfile
+        docker build -t tiny-example ./tiny-example--hello-world-model/
         docker save -o tiny-example.tar tiny-example:latest
         gzip tiny-example.tar
     -
