@@ -39,7 +39,8 @@ for the Dockerfile in this folder.
 To start with you will need to have a Linux machine with both
 Matlab and Docker installed. The reason you need a Linux machine
 is because the Matlab commands needed to produce the Docker image
-only work on Linux, as you can see from their [documentation](https://uk.mathworks.com/help/compiler/package-matlab-standalone-applications-into-docker-images.html).
+only work on Linux, as you can see from their
+[documentation](https://uk.mathworks.com/help/compiler/package-matlab-standalone-applications-into-docker-images.html).
 While you could use this documentation to work out how to dockerise
 this Model for yourself I would recommend continuing on with this
 README as we have already tweaked the commands to work for this
@@ -95,7 +96,8 @@ case.
 
 ## Uploading to DAFNI
 
-Now that you have created the docker image for this model you can upload it to DAFNI. First you'll need to export the docker image and compress it for 
+Now that you have created the docker image for this model you can upload it to
+DAFNI. First you'll need to export the docker image and compress it for 
 uploading. The full documentation for this is on our [Docs website](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/),
 but it can be done using:
 
