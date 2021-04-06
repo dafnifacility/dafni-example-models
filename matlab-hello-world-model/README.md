@@ -6,15 +6,15 @@ process of Dockerising a Matlab Model for upload onto DAFNI.
 The Model itself reads a csv file from a Dataset that has been
 uploaded to DAFNI, an example of what the csv file looks like,
 `dataset.csv`, is included in this folder. The Model then reads
-a parameter from the environment variables, parameters values
+a parameter from the environment variables, parameter values
 are passed to Models via environment variables on DAFNI. The 
-parameter should contain an integer, the Model will add this
-integer to the Matrix that is stored in the csv file. Finally
-the Model will write the new Matrix to a file as an output.
+parameter should contain an integer which will be added 
+to the Matrix that is stored in the CSV file. Finally, the
+model will write the updated Matrix to a file as an output.
 
 File Structure:
 
-- _[Dockerfile](./Dockerfile)_ - Builds the container that will be
+- _[Dockerfile](./Dockerfile)_ - Builds the image that will be
    run by DAFNI
 - _[model_definition.yaml](./model_definition.yaml)_ - A 
    machine-readable file used to define the Model.
@@ -26,27 +26,27 @@ File Structure:
 - _[helloWorld.m](./helloWorld.m)_ - the Matlab Model code
 - _[run_model.sh](./src/run_model.sh)_ - a script that copies
    the input dataset files from DAFNI's data directory to the 
-   folder the Model expects the files to be in, then runs the 
+   folder the Model expects the files to be in. It then runs the 
    Model and then copies the output file to DAFNI's data directory
    so DAFNI can find it.
 
-As this Model uses Matlab the process required to build a Docker
+As this Model uses Matlab, the process required to build a Docker
 image that can run the Model is more complicated than for the 
-other example Models. In fact the process we use is to generate
+other example Models. In fact, the process we use is to generate
 a Docker image from Matlab itself and then use that as a base
 for the Dockerfile in this folder.
 
-To start with you will need to have a Linux machine with both
+To start with, you will need to have a Linux machine with both
 Matlab and Docker installed. The reason you need a Linux machine
 is because the Matlab commands needed to produce the Docker image
 only work on Linux, as you can see from their
 [documentation](https://uk.mathworks.com/help/compiler/package-matlab-standalone-applications-into-docker-images.html).
 While you could use this documentation to work out how to dockerise
 this Model for yourself I would recommend continuing on with this
-README as we have already tweaked the commands to work for this
-case.
+README as we have already tweaked the commands to work for DAFNI's
+specific use-case.
 
-- Okay now you have a Linux machine with Matlab and Docker
+- Once you have a Linux machine with Matlab and Docker
   installed, copy across `helloWorld.m` into your Matlab workspace.
 - We need to make this Matlab script into a standalone 
   application, in order to do this run the following in your Matlab
@@ -72,9 +72,9 @@ case.
   ```bash
   docker build -t hello-world-matlab .
   ```
-- Given that this Model requires a Dataset as an input an extra 
+- Given that this Model requires a Dataset as an input, an extra 
   argument needs to be given to Docker in order to test run this
-  image. We need to tell to use `dataset.csv` as a volume and to
+  image. We need to tell Docker to use `dataset.csv` as a volume and to
   mount it at the path that DAFNI would load the dataset into. 
   We can do that using: 
   ```bash
@@ -86,7 +86,7 @@ case.
   a folder on your computer, specified on the lefthand side of the colon, to the
   path on the righthand side of the colon, you should make sure the path on the
   lefthand side is the full path to the folder that contains `dataset.csv`. 
-  If the command runs successfully you should see some logs from the Model code
+  If the command runs successfully, you should see some logs from the Model code
   telling you what it is doing, there will likely be a couple of errors at the 
   end saying that the `/data/outputs` directory doesn't exist. This is fine, 
   DAFNI creates this directory for you when it runs the Model. You could add
@@ -97,7 +97,7 @@ case.
 ## Uploading to DAFNI
 
 Now that you have created the docker image for this model you can upload it to
-DAFNI. First you'll need to export the docker image and compress it for 
+DAFNI. First, you'll need to export the docker image and compress it for 
 uploading. The full documentation for this is on our [Docs website](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/),
 but it can be done using:
 
