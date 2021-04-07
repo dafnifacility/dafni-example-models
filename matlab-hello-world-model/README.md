@@ -17,7 +17,7 @@ File Structure:
 - _[Dockerfile](./Dockerfile)_ - Builds the image that will be
    run by DAFNI
 - _[model_definition.yaml](./model_definition.yaml)_ - A 
-   machine-readable file used to define the Model.
+   human and machine readable file used to define the Model.
    This information will be shown to other users who may wish to 
    use your Model.
 - _[dataset.csv](./dataset.csv)_ - an example csv file to run
@@ -64,9 +64,9 @@ specific use-case.
   should see a `hello-world` image listed as well as another image
   or two that Matlab has downloaded for you, you can ignore these
   extra images we only need the `hello-world` image.
-- At this point we no longer need Matlab, navigate the terminal you
-  opened to check the `hello-world` image exists, or open a new
-  terminal and navigate it, to your local copy of this folder.
+- At this point we no longer need Matlab, and all commands from this
+  point should be executed in a terminal. Navigate this terminal to 
+  your local copy of this folder.
 - Once you have your terminal pointing at this folder then you can
   build the Docker image for this Model using 
   ```bash
@@ -83,22 +83,24 @@ specific use-case.
   In this command `-e "PARAMETER=5"` provides an environment 
   variable to the running container which emulates the way DAFNI passes
   parameters to Models. `-v /full/path/to/folder:/data/dataslot-name` mounts 
-  a folder on your computer, specified on the lefthand side of the colon, to the
-  path on the righthand side of the colon, you should make sure the path on the
-  lefthand side is the full path to the folder that contains `dataset.csv`. 
-  If the command runs successfully, you should see some logs from the Model code
-  telling you what it is doing, there will likely be a couple of errors at the 
-  end saying that the `/data/outputs` directory doesn't exist. This is fine, 
-  DAFNI creates this directory for you when it runs the Model. You could add
-  another directory mount using a second `-v` argument to your run command, 
-  mounting another local folder to `/data/outputs` if you want to test that
-  the copying does work correctly but this isn't necessary.
+  a folder on your computer, specified on the lefthand side of the colon, to a 
+  path inside the Docker image, specified on the righthand side of the colon, 
+  you should make sure the path on the lefthand side is the full path to the 
+  folder that contains `dataset.csv`. If the command runs successfully, you 
+  should see some logs from the Model code telling you what it is doing, 
+  there will likely be a couple of errors at the end saying that the 
+  `/data/outputs` directory doesn't exist. This is fine, DAFNI creates this 
+  directory for you when it runs the Model. You could add another directory 
+  mount using a second `-v` argument to your run command, mounting another 
+  local folder to `/data/outputs` if you want to test that the copying does 
+  work correctly but this isn't necessary.
 
 ## Uploading to DAFNI
 
 Now that you have created the docker image for this model you can upload it to
 DAFNI. First, you'll need to export the docker image and compress it for 
-uploading. The full documentation for this is on our [Docs website](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/),
+uploading. The full documentation for this is on our 
+[Docs website](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/),
 but it can be done using:
 
 ```bash

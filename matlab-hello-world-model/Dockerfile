@@ -1,3 +1,5 @@
+# This is referring to a local image that is built while following the instructions in the 
+# README.md and not image at https://hub.docker.com/_/hello-world
 FROM hello-world:latest
 
 RUN mkdir -p /code
