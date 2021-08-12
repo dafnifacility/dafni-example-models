@@ -1,0 +1,116 @@
+kind: Model
+apiVersion: v1alpha5
+metadata:
+  displayName: UK Climate Analysis - COMP530
+  name: uk-climate-analysis
+  summary: >
+    To demonstrate the validation of the user defined hypotheses using Machine learning
+    algorithm about climate change in the UK.
+  description: >
+    Created by Aamir Patel as part of the COMP530 Big Data Project at the University of
+    Liverpool. Seeks to address the following hypotheses:
+    • Winter will be wetter: To test if the total number of days during winter having heavy rainfall increases
+    • Summer will be warmer: To test if the total number of days during summer have temperature more than 18 degree increases
+    • Summer will be drier: To test if the total number of days during summer having light rainfall decreases
+    • Annual Sunshine Duration will increase: To test if the total number of hours of sunshine annually will increase
+    • Snowfall in Winter will decrease: To test if the total amount of snowfall during winter will decrease
+
+  source_code: https://github.com/aamirpatel23/UK-Climate-Analysis
+  type: Simulation
+
+spec:
+  inputs:
+    env:
+      - name: PROCESS_RAINFALL
+        title: Process Rainfall Data
+        description: Whether or not to process rainfall data
+        type: boolean
+        default: True
+        required: True
+      - name: PROCESS_SUNSHINE
+        title: Process Sunshine Data
+        description: Whether or not to process sunshine data
+        type: boolean
+        default: True
+        required: True
+      - name: PROCESS_SNOW_FALLING
+        title: Process Snowfall Data
+        description: Whether or not to process snowfall data
+        type: boolean
+        default: True
+        required: True
+      - name: PROCESS_MAXIMUM_TEMPERATURE
+        title: Process Temperature Data
+        description: Whether or not to process maximum temperature data
+        type: boolean
+        default: True
+        required: True
+      - name: SEASON
+        title: Season
+        description: The season to run the model for
+        type: string
+        default: summer
+        options:
+          - name: summer
+            title: Summer
+          - name: winter
+            title: Winter
+        required: True
+      - name: PREDICTION_CYCLE
+        title: Prediction Cycle
+        type: string
+        default: daily
+        description: Daily or Monthly granularity
+        options:
+          - name: daily
+            title: Daily
+          - name: monthly
+            title: Monthly
+        required: True
+
+    dataslots:
+      - name: Rainfall data
+        description: >
+          The daily rainfall data from the 1960s. Collected by the Met Office
+        default:
+          - uid: d73619cd-d194-4bf7-968a-157dc2a586e2
+            versionUid: 9a237000-631b-4a7b-b013-8accc3182ce0
+        path: inputs/rainfall/
+        required: true
+      - name: Maximum Temperature data
+        description: >
+          The daily maximum temperature from the 1960s.
+        default:
+          - uid: d99c400e-ec30-4004-a66e-c7ba3450cca5
+            versionUid: 42a72697-9f5f-4c5b-beea-3f996462d788
+        path: inputs/maximum-temperature/
+        required: true
+      - name: Snowfall data
+        description: >
+          The monthly snowfall levels from the 1960s
+        default:
+          - uid: 4c4b2550-0e60-4fb0-b5ac-b998600a5422
+            versionUid: 46a6d3b5-4210-4dd7-9652-62c6b08229c5
+        path: inputs/snow-falling/
+        required: true
+      - name: Sunshine data
+        description: >
+          The monthly amount of sunshine hours from the 1960s
+        default:
+          - uid: 6add7186-98e8-4a13-8939-bc54c44b934e
+            versionUid: 0aadf277-bb88-4baa-ae2c-e53c25a0b11d
+        path: inputs/sunshine/
+        required: true
+
+  outputs:
+    datasets:
+      - name: base.csv
+        type: csv
+        description: >
+          A CSV showing the levels of the features selected (rainfall, sunshine, snowfall, temperature)
+          There will be one of these for each selected feature. The filename will be prepended by the feature.
+      - name: prediction.csv
+        type: csv
+        description: >
+          Contains predictions about the years ahead for the features selected. There will be one of these
+          for each selected feature. The filename will be prepended by the feature.
