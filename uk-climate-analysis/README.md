@@ -42,6 +42,7 @@ See https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-
 
 ### Compress resultant tar image
 `gzip uk-climate-analysis.tar`
+
 This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface.
 
 ## Running the Model
