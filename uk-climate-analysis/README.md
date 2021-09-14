@@ -25,7 +25,7 @@ datasets needed to run the model for all feature types are listed below:
 
 • https://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-monthly/grid/ascii/sunshine
 
-Note, these data have already been loaded into DAFNI, so with the appropriate permissions (just ask us) you can access them directly there to save space. Alternatively download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you have 'rainfall.zip' etc.) The data will then be incorporate into the dockr image that you upload.
+Note, these data have already been loaded into DAFNI, so with the appropriate permissions (just ask us) you can access them directly there to save space. Alternatively download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you have 'rainfall.zip' etc.) The data will then be incorporate into the docker image that you upload.
 
 ## Creating DOCKER container
 After installing Docker on your computer, below are the commands you will need to run to create your docker image of the model ready to upload to DAFNI.
