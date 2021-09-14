@@ -1,6 +1,6 @@
 # DAFNI Model Examples
 
-This repo contains several simple examples of DAFNI ready models useful for
+This repo contains several simple examples of DAFNI ready models, useful for
 training of self-paced learning.
 
  - _simple-example--fibonacci-model_ - Simple Python based model, reading in
