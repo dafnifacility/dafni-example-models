@@ -47,7 +47,7 @@ This compresse gz file, and the yaml file can now be uploaded to DAFNI.
 ## Running the Model
 Running the model in DAFNI follows a different path from the text below - the DAFNI `Dockerfile` contains the following two lines:
 
-`RUN pip install -r requirements.txt`
+`RUN pip install -r requirements.txt`<br />
 `CMD python climate_analysis.py`
 
 So in DAFNI the model file (climate_analysis.py) is run automatically. However, for reference the text below explains how the model could be run on your computer stand-alone.
