@@ -12,3 +12,5 @@ training or self-paced learning.
  - _uk-climate-analysis_ - a more complex example model predicting weather from
    UKCP09 climate projection data. Uses various visualisations to show the
    results.
+
+Instructions are given in each model section, but follow the same principal steps, you first make edits to the Python source code as required, check the docker and requirements files, create a docker image and zip it up, then upload to DAFNI along with the yaml file.
