@@ -65,19 +65,23 @@ In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and
 
 Note to get the `visualisation.py` script to work, you may first need to make some edits (and comment out some lines), such as:
 
-### Import section
+### Editing the Import section
+```
 import statsmodels.api as sm
-\#from statsmodels.tsa.base.tsa_model import ValueWarning
-\#from statsmodels.tools.sm_exceptions import ConvergenceWarning
+#from statsmodels.tsa.base.tsa_model import ValueWarning
+#from statsmodels.tools.sm_exceptions import ConvergenceWarning
+```
 
-### Final section
+### Editing the Final section
+```
 for feature_type in ["rainfall", "maximum-temperature", "snow-falling"]:
-    \# Comment out call to get_output_folder()
-    \#output_folder = get_output_folder()
-    \#base_df = pd.read_csv(f"{output_folder}/{feature_type}-base.csv")
-    \#prediction_df = pd.read_csv(f"{output_folder}/{feature_type}-prediction.csv")
+    # Comment out call to get_output_folder()
+    #output_folder = get_output_folder()
+    #base_df = pd.read_csv(f"{output_folder}/{feature_type}-base.csv")
+    #prediction_df = pd.read_csv(f"{output_folder}/{feature_type}-prediction.csv")
     base_df = pd.read_csv(f"{feature_type}-base.csv")
     prediction_df = pd.read_csv(f"{feature_type}-prediction.csv")
     plot_trend(base_df, feature_type)
     plot_best_fit_line(base_df, feature_type)
     prediction(prediction_df, feature_type, "summer")
+```
