@@ -73,32 +73,32 @@ spec:
         description: >
           The daily rainfall data from the 1960s. Collected by the Met Office
         default:
-          - uid: d73619cd-d194-4bf7-968a-157dc2a586e2
-            versionUid: 9a237000-631b-4a7b-b013-8accc3182ce0
+          - uid: c0713db1-3fb3-4563-85a5-1b54b74fe4ff
+            versionUid: 23c61169-8345-42bd-b0ce-375527495cac
         path: inputs/rainfall/
         required: true
       - name: Maximum Temperature data
         description: >
           The daily maximum temperature from the 1960s.
         default:
-          - uid: d99c400e-ec30-4004-a66e-c7ba3450cca5
-            versionUid: 42a72697-9f5f-4c5b-beea-3f996462d788
+          - uid: a2def389-9732-4f1e-a441-cf67978463c8
+            versionUid: 5649471d-7e08-4d75-a1e6-af3700608a60
         path: inputs/maximum-temperature/
         required: true
       - name: Snowfall data
         description: >
           The monthly snowfall levels from the 1960s
         default:
-          - uid: 4c4b2550-0e60-4fb0-b5ac-b998600a5422
-            versionUid: 46a6d3b5-4210-4dd7-9652-62c6b08229c5
+          - uid: 46bb6466-751f-4e6f-aa4d-edfeac3bba6c
+            versionUid: e590a554-d11a-43b8-b26f-4a9b0125d5da
         path: inputs/snow-falling/
         required: true
       - name: Sunshine data
         description: >
           The monthly amount of sunshine hours from the 1960s
         default:
-          - uid: 6add7186-98e8-4a13-8939-bc54c44b934e
-            versionUid: 0aadf277-bb88-4baa-ae2c-e53c25a0b11d
+          - uid: c386b269-b4df-4a63-8fef-ce6ae34561ea
+            versionUid: 8a772c09-ece9-4453-8bfb-acfd979b6211
         path: inputs/sunshine/
         required: true
 
