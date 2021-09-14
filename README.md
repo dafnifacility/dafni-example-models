@@ -11,4 +11,4 @@ training of self-paced learning.
    in a text file.
  - _uk-climate-analysis_ - a more complex example model predicting weather from
    UKCP09 climate projection data. Uses various visualisations to show the
-   result.
+   results.
