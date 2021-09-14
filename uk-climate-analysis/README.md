@@ -42,13 +42,15 @@ See https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-
 
 ### Compress resultant tar image
 `gzip uk-climate-analysis.tar`
-This compresse gz file, and the yaml file can now be uploaded to DAFNI.
+This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface.
 
 ## Running the Model
-Running the model in DAFNI follows a different path from the text below - the DAFNI `Dockerfile` contains the following two lines:
+Running the model in DAFNI follows a different mechanism from the text below - the DAFNI `Dockerfile` contains the following two lines:
 
-`RUN pip install -r requirements.txt`<br />
-`CMD python climate_analysis.py`
+```
+RUN pip install -r requirements.txt
+CMD python climate_analysis.py
+```
 
 So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow. However, for reference the text below explains how the model could be run on your computer stand-alone.
 
@@ -61,7 +63,7 @@ The `visualisation.py` file assumes you have imported the data into a Jupyter
 notebook but you don't have to do this. You can adapt the `get_output_folder()`
 folder to point to your output folder instead.
 
-In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the ode from the `visualisation.py` file. In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
+In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the code from the `visualisation.py` file. In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
 
 Note to get the `visualisation.py` script to work, you may first need to make some edits (and comment out some lines), such as:
 
