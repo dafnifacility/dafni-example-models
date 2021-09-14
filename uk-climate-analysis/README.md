@@ -50,11 +50,9 @@ Running the model in DAFNI follows a different path from the text below - the DA
 `RUN pip install -r requirements.txt`<br />
 `CMD python climate_analysis.py`
 
-So in DAFNI the model file (climate_analysis.py) is run automatically. However, for reference the text below explains how the model could be run on your computer stand-alone.
+So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow. However, for reference the text below explains how the model could be run on your computer stand-alone.
 
-To run the model, first install the requirements with `pip install -r
-requirements.txt`. Then, change the `OUTPUT_FOLDER` and `INPUT_FOLDER` in the
-`climate_analysis.py` file to match your actual data folders.
+To run the model 'stand alone', first install the requirements with `pip install -r requirements.txt`. Then, change the `OUTPUT_FOLDER` and `INPUT_FOLDER` in the `climate_analysis.py` file to match your actual data folders.
 
 Then, use `python climate_analysis.py` to run the model.
 
@@ -63,7 +61,7 @@ The `visualisation.py` file assumes you have imported the data into a Jupyter
 notebook but you don't have to do this. You can adapt the `get_output_folder()`
 folder to point to your output folder instead.
 
-In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the ode from the `visualisation.py` file.
+In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the ode from the `visualisation.py` file. In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
 
 Note to get the `visualisation.py` script to work, you may first need to make some edits (and comment out some lines), such as:
 
