@@ -69,8 +69,8 @@ Note to get the `visualisation.py` script to work, you may first need to make so
 ### Editing the Import section
 ```
 import statsmodels.api as sm
-#from statsmodels.tsa.base.tsa_model import ValueWarning
-#from statsmodels.tools.sm_exceptions import ConvergenceWarning
+from statsmodels.tsa.base.tsa_model import ValueWarning
+from statsmodels.tools.sm_exceptions import ConvergenceWarning
 ```
 
 ### Editing the Final section
