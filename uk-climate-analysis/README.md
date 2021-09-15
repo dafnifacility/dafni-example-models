@@ -9,6 +9,8 @@ https://github.com/aamirpatel23
 The model uses historical data about temperature, rainfall, sunshine and
 snowfall to predict the future of the climate in the UK over the next 40 years.
 
+![Example model output](images/uk-climate-analysis-example-output.png)
+
 There have been various changes made to the code to make it more usable and
 readable in DAFNI.
 
