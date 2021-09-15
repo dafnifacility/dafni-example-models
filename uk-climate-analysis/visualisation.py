@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 from statsmodels.tsa.base.tsa_model import ValueWarning
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
 import warnings
