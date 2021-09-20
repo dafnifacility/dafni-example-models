@@ -1,23 +1,24 @@
 kind: Model
-apiVersion: v1alpha4
+api_version: v1beta1
 metadata:
-  displayName: Hello World
+  display_name: Hello World
   name: hello-world
+  publisher: DAFNI Example Models
   summary: Echo "Hello $NAME" where $NAME is configurable (defaults to "World").
   description: >
     A tiny example Model designed for use with DAFNI. This outputs a txt file with "Hello $NAME" where $NAME is a
     configurable input to the Model. $NAME defaults to "World".
-  type: testing
 spec:
   inputs:
-    env:
+    parameters:
       - name: NAME
         title: A Name
-        desc: The name to be use in the output.
+        description: The name to be use in the output.
         type: string
         default: World
+        required: true
   outputs:
     datasets:
       - name: hello.txt
         type: txt
-        desc: A basic text file with "Hello $NAME" in.
+        description: A basic text file with "Hello $NAME" in.

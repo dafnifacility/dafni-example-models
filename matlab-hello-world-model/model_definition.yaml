@@ -1,24 +1,24 @@
 kind: Model
-apiVersion: v1alpha4
+api_version: v1beta1
 metadata:
-    displayName: Hello World Matlab Model
-    name: hello-world-matlab
-    type: demo
-    summary: A hello world model using Matlab
-    description: A hello world model using Matlab
+  display_name: Hello World Matlab Model
+  name: hello-world-matlab
+  publisher: DAFNI Example Models
+  summary: A hello world model using Matlab
+  description: A hello world model using Matlab
 spec:
-    inputs:
-        env:
-            - name: PARAMETER
-              title: Parameter
-              desc: An integer to add to the matrix in the dataset
-              type: integer
-              default: 5
-        dataslots:
-            - name: Dataslot
-              description: A dataslot that should contain a csv with a matrix in it
-              default:
-                  - uid: 201e6d26-a734-4639-936e-98c5792baea2
-                    versionUid: 4f51a9f3-8281-47c6-ac98-fe158a6df1bd
-              path: dataslot-name
-              required: true
+  inputs:
+    parameters:
+      - name: PARAMETER
+        title: Parameter
+        description: An integer to add to the matrix in the dataset
+        type: integer
+        default: 5
+        required: true
+    dataslots:
+      - name: Dataslot
+        description: A dataslot that should contain a csv with a matrix in it
+        default:
+            - 4f51a9f3-8281-47c6-ac98-fe158a6df1bd
+        path: dataslot-name
+        required: true
