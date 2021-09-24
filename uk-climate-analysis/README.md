@@ -91,4 +91,4 @@ python climate_analysis.py
 ```
 
 ### Running locally in Docker
-Docker is designed to allow you to run a programme on any computer supporting docker from the image file - this is how DAFNI operates. Once a docker image is built, you could also run the programme locally on your computer. Note however, that the specific settings in the docker file provided are designed to help run the model in DAFNI. You may need to adapt them before building the image to run this locally in docker, in particular the data settings where you might need to edit FOLDERS as noted above.
+Docker is designed to allow you to run a programme on any computer supporting docker from the image file - this is how DAFNI operates. Once a docker image is built, you could also run the programme locally on your computer in docker. Note however, that the specific settings in the docker file provided are designed to help run the model in DAFNI. You may need to adapt them before building the image to run this locally in docker, in particular the data settings where you might need to edit FOLDERS as noted above.
