@@ -40,19 +40,23 @@ After installing Docker on your computer, below are the commands you will need t
 See https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-ready-model/. This is assuming you have downloaded the model files from this git repository to a local working folder on a computer with docker installed. Change directory to the uk-climate-analysis folder, and from the command prompt/terminal, type:
 
 ### Build container
-To construct the docker file
+To construct the docker file.
+
 `docker build -t uk-climate-analysis .`
 
 ### Run container
 If you want to run the docker file to test it. Note this step is not necessary for loading into DAFNI.
+
 `docker run uk-climate-analysis`
 
 ### Build image
 You then create a binary image file of the model, ready to upload to DAFNI.
+
 `docker save -o uk-climate-analysis.tar uk-climate-analysis`
 
 ### Compress resultant tar image
 DAFNI allows you to compress the binary file before uploading, handy if the file is large.
+
 `gzip uk-climate-analysis.tar`
 
 This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface at https://facility.secure.dafni.rl.ac.uk.
@@ -73,6 +77,7 @@ CMD python climate_analysis.py
 ```
 
 So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow model. However, if you want to run this on your computer stand-alone, first install the requirements:
+
 ```
 pip install -r requirements.txt
 ```
