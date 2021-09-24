@@ -28,7 +28,7 @@ The model is based on climate projection data from UKCP09 which is downloadable 
 
 • https://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-monthly/grid/ascii/sunshine
 
-Note, these datafiles are large, but fortunatelyy they have already been loaded into DAFNI, so with the appropriate group permissions (just ask us first) you can access them directly (by 'UID') so as to save your own disk space.
+Note, these datafiles are large, but fortunately they have already been loaded into DAFNI, so with the appropriate group permissions (just ask us first) you can access them directly (by 'UID') so as to save your own disk space.
 
 If you want to test the model locally, you will still need to download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you would have 'rainfall.zip' etc.).
 
