@@ -1,6 +1,6 @@
 # UK Climate Analysis
 
-This examle is selected to provide a more realistic training model, using large climatic datasets and some machine learning methods:
+This example is selected to provide a more realistic training model, using large climatic datasets and some machine learning methods:
 
 The code has been adapted from this repo:
 https://github.com/aamirpatel23/UK-Climate-Analysis
