@@ -1,5 +1,7 @@
 # UK Climate Analysis
 
+This examle is selected to provide a more realistic training model, using large climatic datasets and some machine learning methods:
+
 The code has been adapted from this repo:
 https://github.com/aamirpatel23/UK-Climate-Analysis
 
@@ -7,17 +9,16 @@ All of the work on the model is the work of Aamir Patel:
 https://github.com/aamirpatel23
 
 The model uses historical data about temperature, rainfall, sunshine and
-snowfall to predict the future of the climate in the UK over the next 40 years.
+snowfall, used to predict the future of the climate in the UK over the next 40 years.
 
 ![Example model output](images/uk-climate-analysis-example-output.png)
 
-There have been various changes made to the code to make it more usable and
-readable in DAFNI.
+There have been various changes made to the original code to make it more usable and readable in DAFNI.
 
 A Dockerfile has also been added so that the model can run in a container.
 
-The model is based on data from UKCP09 which is downloadable from CEDA (you will need a free account to access and download the data from CEDA). The
-datasets needed to run the model for all feature types are listed below:
+## Datasets required
+The model is based on climate projection data from UKCP09 which is downloadable from CEDA (you will need a free account to access and download the data from CEDA). The datasets needed to run the model for all feature types are listed below:
 
 • https://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-daily/grid/ascii/maximum-temperature
 
@@ -27,64 +28,57 @@ datasets needed to run the model for all feature types are listed below:
 
 • https://data.ceda.ac.uk/badc/ukcp09/data/gridded-land-obs/gridded-land-obs-monthly/grid/ascii/sunshine
 
-Note, these data have already been loaded into DAFNI, so with the appropriate permissions (just ask us) you can access them directly there to save space. Alternatively download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you have 'rainfall.zip' etc.) The data will then be incorporated into the docker image that you create and upload.
+Note, these datafiles are large, but fortunatelyy they have already been loaded into DAFNI, so with the appropriate group permissions (just ask us first) you can access them directly (by 'UID') so as to save your own disk space.
+
+If you want to test the model locally, you will still need to download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you would have 'rainfall.zip' etc.).
+
+## A note on data files
+In DAFNI, the general concept is to upload your datafiles to the system as a separate action. The interface has a 'Data' option to allow this. Your model then operates on this data. You can hold your own datafiles privately, or share them with others. One real strength of DAFNI is the ability to access datasets already provided within the platform in your models, removing a lot of the work you might have had to do. Data has 'metadata' associated with it to help you find what you want. Data is also uniquely identified by a 'UID'. When you upload a dataset, the UID is generated automatically for you. You can then use this UID in the yaml file, in the dataslots section to reference the file.
 
 ## Creating the DOCKER container
 After installing Docker on your computer, below are the commands you will need to run to create your docker image of the model ready to upload to DAFNI.
-See https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-ready-model/
+See https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-ready-model/. This is assuming you have downloaded the model files from this git repository to a local working folder on a computer with docker installed. Change directory to the uk-climate-analysis folder, and from the command prompt/terminal, type:
 
 ### Build container
+To construct the docker file
 `docker build -t uk-climate-analysis .`
 
 ### Run container
+If you want to run the docker file to test it. Note this step is not necessary for loading into DAFNI.
 `docker run uk-climate-analysis`
 
 ### Build image
+You then create a binary image file of the model, ready to upload to DAFNI.
 `docker save -o uk-climate-analysis.tar uk-climate-analysis`
 
 ### Compress resultant tar image
+DAFNI allows you to compress the binary file before uploading, handy if the file is large.
 `gzip uk-climate-analysis.tar`
 
-This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface.
+This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface at ![https://facility.secure.dafni.rl.ac.uk](https://facility.secure.dafni.rl.ac.uk).
 
-## Running the Model
-Running the model in DAFNI follows a different mechanism from the text below - the DAFNI `Dockerfile` contains the following two lines:
+## Visualising the Model Output
+When you run the model, a series of output data files are created. The `visualisation.py` script is used to graph these. This assumes you have the output data available to a Jupyter notebook. If needed, you can adapt the `get_output_folder()` function to point to a different output folder instead.
+
+In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
+
+In DAFNI, create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the Python code from the `visualisation.py` file. When you run this, you should see the graphs appear (may take a few moments to run).
+
+## Running the model locally in stand-alone mode
+Running the model locally, rather than in DAFNI follows a different mechanism. In DAFNI, note the `Dockerfile` provided contains the following two lines:
 
 ```
 RUN pip install -r requirements.txt
 CMD python climate_analysis.py
 ```
 
-So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow. However, for reference the text below explains how the model could be run on your computer stand-alone.
-
-To run the model 'stand alone', first install the requirements with `pip install -r requirements.txt`. Then, change the `OUTPUT_FOLDER` and `INPUT_FOLDER` in the `climate_analysis.py` file to match your actual data folders.
-
-Then, use `python climate_analysis.py` to run the model.
-
-## Visualising the Model Output
-The `visualisation.py` file assumes you have imported the data into a Jupyter notebook but you don't have to do this. You can adapt the `get_output_folder()` folder to point to your output folder instead.
-
-In DAFNI, you will create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the code from the `visualisation.py` file. In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
-
-Note to get the `visualisation.py` script to work, you may first need to make some edits (and comment out some lines), such as:
-
-### Editing the Import section
+So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow model. However, if you want to run this on your computer stand-alone, first install the requirements:
 ```
-import statsmodels.api as sm
-from statsmodels.tsa.base.tsa_model import ValueWarning
-from statsmodels.tools.sm_exceptions import ConvergenceWarning
+pip install -r requirements.txt
 ```
 
-### Editing the Final section
+Then, change the `OUTPUT_FOLDER` and `INPUT_FOLDER` in the `climate_analysis.py` file to match your actual data folders. Note you will have to hold the datafiles locally also. Then, to run the model:
+
 ```
-for feature_type in ["rainfall", "maximum-temperature", "snow-falling"]:
-    # Comment out call to get_output_folder()
-    #output_folder = get_output_folder()
-    #base_df = pd.read_csv(f"{output_folder}/{feature_type}-base.csv")
-    #prediction_df = pd.read_csv(f"{output_folder}/{feature_type}-prediction.csv")
-    base_df = pd.read_csv(f"{feature_type}-base.csv")
-    prediction_df = pd.read_csv(f"{feature_type}-prediction.csv")
-    plot_trend(base_df, feature_type)
-    plot_best_fit_line(base_df, feature_type)
-    prediction(prediction_df, feature_type, "summer")
+python climate_analysis.py
 ```
