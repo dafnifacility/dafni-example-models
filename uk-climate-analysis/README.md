@@ -55,7 +55,7 @@ You then create a binary image file of the model, ready to upload to DAFNI.
 DAFNI allows you to compress the binary file before uploading, handy if the file is large.
 `gzip uk-climate-analysis.tar`
 
-This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface at ![https://facility.secure.dafni.rl.ac.uk](https://facility.secure.dafni.rl.ac.uk).
+This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface at https://facility.secure.dafni.rl.ac.uk.
 
 ## Visualising the Model Output
 When you run the model, a series of output data files are created. The `visualisation.py` script is used to graph these. This assumes you have the output data available to a Jupyter notebook. If needed, you can adapt the `get_output_folder()` function to point to a different output folder instead.
