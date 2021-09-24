@@ -68,7 +68,9 @@ In the DAFNI workflow, configure a visualisation to bring over all the data from
 
 In DAFNI, create a new 'Jupyter notebook' in the visualisation tool and then copy and paste in the Python code from the `visualisation.py` file. When you run this, you should see the graphs appear (may take a few moments to run).
 
-## Running the model locally in stand-alone mode
+## Running the model locally
+
+### Running in stand-alone mode
 Running the model locally, rather than in DAFNI follows a different mechanism. In DAFNI, note the `Dockerfile` provided contains the following two lines:
 
 ```
@@ -76,7 +78,7 @@ RUN pip install -r requirements.txt
 CMD python climate_analysis.py
 ```
 
-So in DAFNI the model file (climate_analysis.py) is run automatically by the workflow model. However, if you want to run this on your computer stand-alone, first install the requirements:
+So in DAFNI the model file `climate_analysis.py` is run automatically by the workflow model. However, if you want to run this on your computer stand-alone, first install the requirements:
 
 ```
 pip install -r requirements.txt
@@ -87,3 +89,6 @@ Then, change the `OUTPUT_FOLDER` and `INPUT_FOLDER` in the `climate_analysis.py`
 ```
 python climate_analysis.py
 ```
+
+### Running locally in Docker
+Docker is designed to allow you to run a programme on any computer supporting docker from the image file - this is how DAFNI operates. Once a docker image is built, you could also run the programme locally on your computer. Note though, that the specific settings in the docker file provided are designed to help run the model in DAFNI. You would need to adapt them before building the image to run this locally in docker - in particular the data settings. The current settings assume you are connecting to data sources by UID on DAFNI. That would not be the case locally.
