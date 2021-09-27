@@ -33,7 +33,7 @@ Note, these datafiles are large, but fortunately they have already been loaded i
 If you want to test the model locally, you will still need to download the files from CEDA and file them in your folder structure (noting each of these is a zip file, thus in /data/inputs/rainfall you would have 'rainfall.zip' etc.).
 
 ## A note on data files
-In DAFNI, the general concept is to upload your datafiles to the system as a separate action. The interface has a 'Data' option to allow this. Your model then operates on this data. You can hold your own datafiles privately, or share them with others. One real strength of DAFNI is the ability to access datasets already provided by other users within the platform in your models, removing a lot of the work you might have had to do. Each dataset has 'metadata' associated with it to help you find what you want easily. Each dataset is also uniquely identified by a 'UID'. When you upload a dataset, this UID is generated automatically for you. You can then use this UID in the yaml file, in the dataslots section to reference the file.
+In DAFNI, the general concept is to upload any datafiles you need into the system as a separate action. The interface has a 'Data' option to allow this. Your model then operates on this data. You can hold your own datafiles privately, or share them with others through the use of groups. However, one real strength of DAFNI is the ability to access datasets already provided by other users within the platform within your models, removing a lot of the work you might have previously had to do. Each dataset has 'metadata' associated with it to help you find what you want easily. Each dataset is also uniquely identified by a 'UID'. When you upload a dataset, this UID is generated automatically for you. You can then use this UID in the yaml file, in the dataslots section to reference the file. DAFNI will then make the data available for your model at the path location specified in the yaml file.
 
 ## Creating the DOCKER container
 After installing Docker on your computer, below are the commands you will need to run to create your docker image of the model ready to upload to DAFNI.
@@ -45,7 +45,7 @@ To construct the docker file.
 `docker build -t uk-climate-analysis .`
 
 ### Run container
-If you want to run the docker file to test it. Note this step is not necessary for loading into DAFNI.
+If you wanted to run the docker file to test it you can. Note this step is not necessary for loading into DAFNI.
 
 `docker run uk-climate-analysis`
 
@@ -62,7 +62,7 @@ DAFNI allows you to compress the binary file before uploading, handy if the file
 This compressed gz file, and the yaml file can now be uploaded to DAFNI via the DAFNI web interface at https://facility.secure.dafni.rl.ac.uk.
 
 ## Visualising the Model Output
-When you run the model, a series of output data files are created. The `visualisation.py` script is used to graph these. This assumes you have the output data available to a Jupyter notebook. If needed, you can adapt the `get_output_folder()` function to point to a different output folder instead.
+When you run the model, a series of output data files are created. The `visualisation.py` script is used to graph the results. This assumes you have the output data available to a Jupyter notebook. If needed, you can adapt the `get_output_folder()` function to point the script to a different output folder instead.
 
 In the DAFNI workflow, configure a visualisation to bring over all the data from the model run from path `/data/outputs/*` (this is added in the workflow visualisation setting right at the end of the configuration, below all the metadata settings).
 
