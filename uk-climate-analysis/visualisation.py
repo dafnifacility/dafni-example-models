@@ -285,10 +285,6 @@ def get_output_folder():
 
 
 for feature_type in ["rainfall", "maximum-temperature", "snow-falling"]:
-    # For DAFNI, comment out use of get_output_folder
-    #output_folder = get_output_folder()
-    #base_df = pd.read_csv(f"{output_folder}/{feature_type}-base.csv")
-    #prediction_df = pd.read_csv(f"{output_folder}/{feature_type}-prediction.csv")
     base_df = pd.read_csv(f"{feature_type}-base.csv")
     prediction_df = pd.read_csv(f"{feature_type}-prediction.csv")
     plot_trend(base_df, feature_type)
