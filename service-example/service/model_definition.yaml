@@ -1,0 +1,20 @@
+kind: Model
+api_version: v1beta1
+metadata:
+  display_name: Service Example
+  name: service-example
+  type: service
+  publisher: DAFNI Example Models
+  summary: Just happily waits doing nothing.
+  description: >
+    This has a simple sleep call that doesn't ever finish, but doesn't do anything useful. The client will to to "ping"
+    this service to see if it's available.
+spec:
+  inputs:
+    parameters:
+      - name: NOT_A_PARAMETER
+        title: Not a parameter
+        description: This parameter is temporarily needed to pass the current schema
+        type: string
+        required: false
+    
