@@ -14,7 +14,7 @@ The client model expects the service IP to be passed in to the parameter called 
 You can build the service model and test is with:
 ```bash
 docker build -t service-example .
-docker run servie-example
+docker run service-example
 ```
 
 You can build the client model and test it by also passing in an example IP:
