@@ -7,7 +7,7 @@ metadata:
   publisher: DAFNI Example Models
   summary: Write the ping output to a file
   description: >
-    An example service type Model designed for use with DAFNI. Writes the ping output to a file caller ping.txt.
+    An example service type Model designed for use with DAFNI. Writes the ping output to a file called ping.txt.
     The IP address is passed in as a parameter.
 spec:
   inputs:
