@@ -1,7 +1,7 @@
 # Service model example
 
 A service model runs beside other models. 
-Typically this can be database which stores information as a workflow progresses. This example contains two models the service and a model which communicates with it, which we have called the client.
+Typically this can be a database which stores information as a workflow progresses. This example contains two models the service and a model which communicates with it, which we have called the client.
 
 Each model contains:
 - _[Dockerfile](./Dockerfile)_ - Builds the service container that will be run by DAFNI
