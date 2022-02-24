@@ -12,7 +12,7 @@ The service model contains two files:
 The client contains three
 - _[Dockerfile](./client/Dockerfile)_ - Builds the client model that will be run by DAFNI
 - _[model_definition.yaml](./client/model_definition.yaml)_ - A machine-readable file used to define the model. 
-- _[use_database,sh](./client/use_database.sh)_ - This file connects to the database and adds a record.
+- _[use_database.sh](./client/use_database.sh)_ - This file connects to the database and adds a record.
 
 The service model starts up an empty influxdb server and then waits for instructions to come from somewhere. The model_definition also has a readiness_probe set, which allows out system to check the database is ready to be connected to. This particular database can be tested at the url http://<IP>:8086/ping , as shown here:
 
