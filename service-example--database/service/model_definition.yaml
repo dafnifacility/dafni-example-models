@@ -1,0 +1,16 @@
+kind: Model
+api_version: v1beta1
+metadata:
+  display_name: Database Service Example
+  name: database-service-example
+  type: service
+  publisher: DAFNI Example Models
+  summary: Starts a influxdb service
+  description: >
+    Starts a influxdb service for other models to communicate on
+spec:
+  resources:
+    readiness_probe:
+      path: /ping
+      port: 8086
+    

@@ -1,20 +1,20 @@
 # Service model example
 
-A service model runs beside other models. 
+A service model runs alongside other models. 
 Typically this can be database which stores information as a workflow progresses. This example contains two models the service and a model which communicates with it, which we have called the client.
 
 Each model contains:
-- _[Dockerfile](./Dockerfile)_ - Builds the service container that will be run by DAFNI
-- _[model_definition.yaml](./model_definition.yaml)_ - A machine-readable file used to define the model.
+- a _Dockerfile_ - Builds the model container that will be run by DAFNI
+- a model_definition.yaml_ - A machine-readable file used to define the model.
 
 The service model simply starts and runs with an infinite loop, but also outputs the current second. The client model runs a ping command to show it is connecting to the service mode.
 
-The client model expects the service IP to be passed in to the parameter called MY_SERVICE_IP. When both of these models are added to a Workflow, the step name of the service can be added to the client parameter. 
+The client model expects the service IP to be passed in to the parameter called MY_SERVICE_IP. When both of these models are added to a Workflow, the step name of the service can be added to the client parameter.
 
 You can build the service model and test is with:
 ```bash
 docker build -t service-example .
-docker run servie-example
+docker run service-example
 ```
 
 You can build the client model and test it by also passing in an example IP:
