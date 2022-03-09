@@ -7,6 +7,8 @@ Each model contains:
 - a _Dockerfile_ - Builds the model container that will be run by DAFNI
 - a model_definition.yaml_ - A machine-readable file used to define the model.
 
+The service's model_definition.yaml file adds `type: service` to the meta section which defines it as a service, the other option is "model" which is also the default if not specifically added.
+
 The service model simply starts and runs with an infinite loop, but also outputs the current second. The client model runs a ping command to show it is connecting to the service model.
 
 The client model expects the service IP to be passed in to the parameter called MY_SERVICE_IP. When both of these models are added to a Workflow, the step name of the service can be added to the client parameter.

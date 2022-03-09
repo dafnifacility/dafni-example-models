@@ -3,7 +3,7 @@
 A service model runs alongside other models. 
 Typically this can be database which stores information as a workflow progresses.
 
-This example is a more complex model, for a simpler one see the example at [service-example](./../service-example). This contains two models the service and a model which communicates with it, which we have called the client.
+This example is a more complex model, for a simpler one see the example at [service-example](./../service-example--simple). This contains two models the service and a model which communicates with it, which we have called the client.
 
 The service model contains two files:
 - _[Dockerfile](./service/Dockerfile)_ - Builds the database model that will be run by DAFNI
@@ -14,7 +14,8 @@ The client contains three
 - _[model_definition.yaml](./client/model_definition.yaml)_ - A machine-readable file used to define the model. 
 - _[use_database.sh](./client/use_database.sh)_ - This file connects to the database and adds a record.
 
-The service model starts up an empty influxdb server and then waits for instructions to come from somewhere. The model_definition also has a readiness_probe set, which allows out system to check the database is ready to be connected to. This particular database can be tested at the url http://<IP>:8086/ping , as shown here:
+## Service model
+The service model starts up an empty influxdb server and then waits for instructions to come from somewhere. The model_definition also has a readiness_probe set, which allows our system to check the database is ready to be connected to. This particular database can be tested at the url http://<IP>:8086/ping , as shown here:
 
     spec:
       resources:
@@ -22,11 +23,12 @@ The service model starts up an empty influxdb server and then waits for instruct
           path: /ping
           port: 8086
 
-The client model runs a list of commands that firsts create a database, then adds a record (a number from 1 to 100), and then outputs the entire database to a file. 
+## Client Model
+The client model runs a list of commands from a shell script _use_database.sh_.  The first creates a database (if it doesn't already exist), then adds a record consisting of a single number (between 1 and 100). Lastly it outputs the entire contents of the database to a file.
 
-> **Note:** The client model has been designed so it can be run many times in the same workflow. Each time one is run a new number is added to the database.  
+> **Note:** The client model has been designed so it can be run many times in the same workflow. Each time one is run a new number is added to the database. The last client model run will output **all** the records added by all the client models. 
 
-The client model expects the service IP to be passed in to the parameter called INFLUX_IP. This is then used in the _use_database.sh_ file.
+The client model expects the IP of the service model to be passed in to the client's parameter called `INFLUX_IP` (that environment variable is then used in the _use_database.sh_ file to access the database).
 
     spec:
       inputs:
@@ -37,22 +39,34 @@ The client model expects the service IP to be passed in to the parameter called 
             type: link
             required: false
 
-When a workflow is being created in DAFNI the **step-name** of the database can be added to the client parameter.
+Every client model (i.e. any model that needs to communicate with a service) needs a parameter of type `link` so the IP address can be passed in and used to communicate.
+
+## In Workflows
+
+When you create a workflow in DAFNI with any service you will have to manually assign the **step name** you chose for the service to any client that needs to access it. This is how communication between client and service is achieved.
+
+For example, you create a workflow with the two models above, one service model step called `my-service` and two client steps called `my-client-1` and `my-client-2`. When adding parameter values you must assign the _link parameter_ called `INFLUX_IP` in each of `my-client-1` and `my-client-2`  to the service step name `my-service`.
 
 ## Building
 
+### Service
 You can build the service model and test is with:
 ```bash
 docker build -t service-example .
 docker run service-example
 ```
+You should see the database start up
+
+### Client 
 
 You can build the client model and test it by also passing in an example IP:
 
 ```bash
 docker build -t client-example .
-docker run -e MY_SERVICE_IP=127.0.0.1 client-example
+docker run -e INFLUX_IP=127.0.0.1 client-example
 ```
+
+While this should show you some output, it won't actually be able to connect anything until this is used inside a workflow.
 
 ## Uploading to DAFNI
 
