@@ -32,7 +32,7 @@ You will need to create a file from your docker image to upload it. Check out th
 docker save -o tiny-example.tar tiny-example
 ```
 
-You can then also compress it before uploading:
+You can also compress the `tiny-example.tar` file before uploading. This is not essential but for large images it will save you some time when uploading.
 
 ```bash
 gzip tiny-example.tar

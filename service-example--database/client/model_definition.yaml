@@ -1,0 +1,25 @@
+kind: Model
+api_version: v1beta1
+metadata:
+  display_name: Simple Client Access
+  name: client-service-access
+  type: model
+  publisher: DAFNI Example Models
+  summary: Write the ping output to a file
+  description: >
+    An example service type Model designed for use with DAFNI. Writes the ping output to a file caller ping.txt.
+    The IP address is passed in as a parameter.
+spec:
+  inputs:
+    parameters:
+      - name: INFLUX_IP
+        title: Influx IP
+        description: The variable that will hold the IP of the Influx database.
+        type: link
+        required: false
+        
+  outputs:
+    datasets:
+      - name: data.json
+        type: txt
+        description: A text file with the ping output
