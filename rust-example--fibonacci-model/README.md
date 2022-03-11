@@ -20,7 +20,7 @@ The model generates a JSON file containing the sequence, the initial settings an
 {
   "sequence": [0, 1, 1, 2, 3, 5],
   "settings":  {
-    "length": 20,
+    "length": 6,
     "f0": 0,
     "f1": 1
   },
@@ -32,14 +32,14 @@ The model generates a JSON file containing the sequence, the initial settings an
 }
 ```
 
-The Rust program uses an `i64` integer and so is restricted to a maximum sequence length value of 93 when F0=0 and F1=1. However, the model is restricted to a sequence length of 50, an arbitrary number, because we don't know what F0 and F1 values will be used.
+The Rust program uses an `i64` integer so has a maximum sequence length value of 93 when F0=0 and F1=1. However, the model is restricted to a sequence length of 50 - an arbitrary number - because we don't know what F0 and F1 values will be used.
 
 ## Technical Info
 
 This model pulls in several environment variables. The Rust code is built into a Docker image using the
 [provided Dockerfile](./Dockerfile).
 
-There are five files here:
+There are eight files here:
 
  - Rust files:
    - _[main.rs](./fibonacci-model/src/main.rs)_ - This is the main file that is built into a binary.
@@ -47,15 +47,16 @@ There are five files here:
    - _[Cargo.toml](./fibonacci-model/Cargo.toml)_ - This is a Rust Cargo module file.
    - _[Cargo.lock](./fibonacci-model/Cargo.lock)_ - This is a Rust Cargo file to lock dependencies.
 
-- _[Dockerfile](./Dockerfile)_ - Builds the container that will be run by DAFNI
-- _[model_definition.yaml](./model_definition.yaml)_ - A machine-readable file used to define the model. This information will be shown to other users who may wish to use your model. 
-- _README.md_ - This helpful file. It should contain detailed information about the model.
+ - _[Dockerfile](./Dockerfile)_ - Builds the container that will be run by DAFNI.
+ - _[dockerignore](./.dockerignore)_ - Helps speed up the docker build process.
+ - _[model_definition.yaml](./model_definition.yaml)_ - A machine-readable file used to define the model. This information will be shown to other users who may wish to use your model. 
+ - _README.md_ - This helpful file.
 
 
 ## Dependencies
 
 This model requires [Rust](https://www.rust-lang.org) and
-[Docker](https://www.docker.com/) to be installed in order to build and run locally, alternatively you can run it inside a docker container without installing Rust.
+[Docker](https://www.docker.com/) to be installed in order to build and run locally, alternatively you can run it with just Docker by building it inside a docker container.
 
 ## Running the Model
 
