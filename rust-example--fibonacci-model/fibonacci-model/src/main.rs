@@ -1,6 +1,7 @@
 mod work;
 
 use std::env;
+use std::path::Path;
 use std::fs::File;
 use std::io::prelude::*;
 use chrono::Utc;
@@ -8,15 +9,15 @@ use json;
 
 const SEQUENCE_LENGTH_DEFAULT: usize = 20;
 const SEQUENCE_LENGTH_MINIMUM: usize = 2;
-const SEQUENCE_LENGTH_MAXIMUM: usize = 93;
+const SEQUENCE_LENGTH_MAXIMUM: usize = 50;
 const SEQUENCE_F0_DEFAULT: i64 = 0;
 const SEQUENCE_F1_DEFAULT: i64 = 1;
 
 const MODEL_NAME: &str = "fibonacci-rust-model";
 const MODEL_VERSION: &str = "1.0";
 
-const OUTPUT_FILE: &str = "/data/outputs/sequence.json";
-//const OUTPUT_FILE: &str = "sequence.json";
+const OUTPUT_FOLDER: &str = "/data/outputs/";
+const OUTPUT_FILE: &str = "sequence.json";
 
 fn main() {
 
@@ -76,8 +77,15 @@ fn get_settings() -> (usize, i64, i64) {
 
 fn save_sequence( sequence: Vec<i64>, length: usize, f0:i64, f1:i64, created: String ) {
     
-    println!("Saving file.");
+    let mut path = Path::new(OUTPUT_FOLDER);
+    if !path.is_dir() {
+        println!("Warning: Save folder not available, outputting to working directory instead.");
+        path = Path::new("./");
+    }
     
+    let file = path.join(OUTPUT_FILE);
+    println!("Saving file to {}", file.display() );
+
     let data = json::object!{
         sequence: sequence,
         settings: {
@@ -91,11 +99,10 @@ fn save_sequence( sequence: Vec<i64>, length: usize, f0:i64, f1:i64, created: St
             created: created,
         }
     };
-
-    let mut writer = File::create( OUTPUT_FILE )
+    
+    let mut writer = File::create( file )
         .expect("Error: json file failed to be created" );
 
     writer.write_all( data.dump().as_bytes() )
         .expect("Error: Failed to write file.");
-    
 }

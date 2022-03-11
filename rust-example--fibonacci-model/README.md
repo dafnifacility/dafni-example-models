@@ -32,7 +32,7 @@ The model generates a JSON file containing the sequence, the initial settings an
 }
 ```
 
-The Rust program uses an `i64` integer and so has a fairly low maximum sequence length value of 93
+The Rust program uses an `i64` integer and so is restricted to a maximum sequence length value of 93 when F0=0 and F1=1. However, the model is restricted to a sequence length of 50, an arbitrary number, because we don't know what F0 and F1 values will be used.
 
 ## Technical Info
 
@@ -55,18 +55,19 @@ There are five files here:
 ## Dependencies
 
 This model requires [Rust](https://www.rust-lang.org) and
-[Docker](https://www.docker.com/) to be installed in order to build and run locally.
+[Docker](https://www.docker.com/) to be installed in order to build and run locally, alternatively you can run it inside a docker container without installing Rust.
 
 ## Running the Model
 
-You can run this example model from within the "simple-example" folder by doing the
-following:
+You can run this example model locally from within the folder _rust-example--fibonacci-model/fibonacci-model_ using the stardard Rust build command:
 
 ```bash
-Cargo run
+cargo run
 ```
 
-You can also run this model using Docker from within the same folder by doing:
+You can also run this model without installing Rust using Docker. You will have to run these commands before creating a file for DAFNI. 
+
+From within the folder _rust-example--fibonacci-model_ run these commands:
 
 ```bash
 docker build -t fibonacci-rust-model:1.0 .
@@ -78,7 +79,7 @@ You don't need to run the build step every time you want to run the model, you o
 You can change the inputs with environment variables like so:
 
 ```bash
-docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-rust-model
+docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-rust-model:1.0
 ```
 
 ## Uploading to DAFNI
@@ -86,7 +87,7 @@ docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-rus
 You will need to create a file of your docker image to upload. Check out the detailed instructions online at [Docs](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/) but you can create it with:
 
 ```bash
-docker save -o fibonacci-rust-model.tar finbonacci-rust-model
+docker save -o fibonacci-rust-model.tar fibonacci-rust-model
 ```
 
 You can also compress it before uploading:
