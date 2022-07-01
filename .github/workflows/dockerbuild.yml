@@ -71,7 +71,7 @@ jobs:
         gzip tiny-example.tar
     -
       name: Upload To DAFNI
-      uses: dafnifacility/dafni-model-uploader@v1.6
+      uses: dafnifacility/dafni-model-uploader@v1.9
       with:
         definition-path: "./tiny-example--hello-world-model/model_definition.yaml"
         image-path: "./tiny-example.tar.gz"
