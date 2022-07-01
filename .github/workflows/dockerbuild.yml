@@ -73,9 +73,9 @@ jobs:
       name: Upload To DAFNI
       uses: dafnifacility/dafni-model-uploader@v1.6
       with:
-        definition-path: './tiny-example--hello-world-model/model_definition.yaml'
-        image-path: './tiny-example.tar.gz'
-        username: 'model-uploader'
+        definition-path: "./tiny-example--hello-world-model/model_definition.yaml"
+        image-path: "./tiny-example.tar.gz"
+        username: model-uploader
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
         parent-model: "da6d001a-d58e-4931-8e9f-af653e5f14f1"
