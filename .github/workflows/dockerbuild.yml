@@ -35,7 +35,7 @@ jobs:
         gzip simple-example.tar
     -
       name: Upload To DAFNI
-      uses: dafnifacility/dafni-model-uploader@v1.6
+      uses: dafnifacility/dafni-model-uploader@v1.9
       with:
         definition-path: './simple-example--fibonacci-model/model_definition.yaml'
         image-path: './simple-example.tar.gz'
