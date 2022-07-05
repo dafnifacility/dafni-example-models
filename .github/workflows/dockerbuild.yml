@@ -37,9 +37,9 @@ jobs:
       name: Upload To DAFNI
       uses: dafnifacility/dafni-model-uploader@v1.9
       with:
-        definition-path: './simple-example--fibonacci-model/model_definition.yaml'
-        image-path: './simple-example.tar.gz'
-        username: 'model-uploader'
+        definition-path: ./simple-example--fibonacci-model/model_definition.yaml
+        image-path: ./simple-example.tar.gz
+        username: model-uploader
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
         parent-model: "abdffa58-f0ee-482a-b09f-87d3dc16f31a"
@@ -73,8 +73,8 @@ jobs:
       name: Upload To DAFNI
       uses: dafnifacility/dafni-model-uploader@v1.9
       with:
-        definition-path: "./tiny-example--hello-world-model/model_definition.yaml"
-        image-path: "./tiny-example.tar.gz"
+        definition-path: ./tiny-example--hello-world-model/model_definition.yaml
+        image-path: ./tiny-example.tar.gz
         username: model-uploader
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
