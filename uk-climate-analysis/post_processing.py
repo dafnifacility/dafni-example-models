@@ -13,15 +13,15 @@ def define_months(df: DataFrame, season: str) -> DataFrame:
 
 
 def define_threshold(df: DataFrame, season: str, feature: str) -> DataFrame:
-    threshold_df = df
-
+    if feature == "sunshine" or feature == "snow-falling":
+        return df
     if season == "winter":
-        threshold_df = df.loc[(df["Values"] >= 10)]
-    if season == "summer":
-        threshold_df = df.loc[(df["Values"] <= 1)]
+        return df.loc[(df["Values"] >= 10)]
+    if season == "summer" and feature == "rainfall":
+        return df.loc[(df["Values"] <= 1)]
     if season == "summer" and feature == "maximum-temperature":
-        threshold_df = df.loc[(df["Values"] >= 18)]
-    return threshold_df
+        return df.loc[(df["Values"] >= 18)]
+    return df
 
 
 def get_prediction_data(df: DataFrame, feature: str) -> DataFrame:
