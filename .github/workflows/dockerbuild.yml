@@ -114,4 +114,4 @@ jobs:
         username: model-uploader
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
-        parent-model: "d6f7b327-0418-4de6-bf8b-add2555f9547"
+        parent-model: "737bf851-b1b2-43bd-9d7c-9421500c818f"
