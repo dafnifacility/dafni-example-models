@@ -79,3 +79,39 @@ jobs:
         password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
         version-message: "Uploaded from GitHub workflow"
         parent-model: "da6d001a-d58e-4931-8e9f-af653e5f14f1"
+  publish-uk-climate-analysis-image:
+    name: Publish UK Climate Analysis Image
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Checkout code
+      uses: actions/checkout@v2
+    -
+      name: DockerBuild
+      uses: docker/build-push-action@v1
+      with:
+        dockerfile: uk-climate-analysis/Dockerfile
+        path: ./uk-climate-analysis
+        username: dafni-service-account
+        password: ${{ secrets.SERVICE_ACCOUNT }}
+        registry: ghcr.io
+        repository: dafnifacility/uk-climate-analysis
+        tags: latest
+        tag_with_sha: true
+        tag_with_ref: true
+    -
+      name: Compress docker image
+      run: |
+        docker build -t uk-climate-analysis ./uk-climate-analysis/
+        docker save -o uk-climate-analysis.tar uk-climate-analysis:latest
+        gzip uk-climate-analysis.tar
+    -
+      name: Upload To DAFNI
+      uses: dafnifacility/dafni-model-uploader@v1.9
+      with:
+        definition-path: ./uk-climate-analysis/model_definition.yaml
+        image-path: ./uk-climate-analysis.tar.gz
+        username: model-uploader
+        password: ${{ secrets.DAFNI_SERVICE_ACCOUNT_PASSWORD }}
+        version-message: "Uploaded from GitHub workflow"
+        parent-model: "d6f7b327-0418-4de6-bf8b-add2555f9547"
