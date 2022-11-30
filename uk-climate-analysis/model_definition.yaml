@@ -1,5 +1,5 @@
-kind: Model
-api_version: v1beta1
+kind: M
+api_version: v1beta2
 metadata:
   display_name: UK Climate Analysis - COMP530
   name: uk-climate-analysis
