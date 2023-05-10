@@ -15,7 +15,7 @@ gPATHO = ""
 
 isDAFNI = os.environ.get("ISDAFNI")
 print("ISDAFNI Environment variable = ", isDAFNI, type(isDAFNI))
-if os.environ.get("ISDAFNI") == "True":
+if isDAFNI == "True":
     if os.name == "nt":
         pren = os.environ.get("HOMEDRIVE")
     else:
@@ -48,7 +48,6 @@ def trivana():
             plt.errorbar(pdat.rmonths, pdat.mvals_by_year(yr), yerr=pdat.emvals_by_year(yr), label=yr)
         plt.legend(loc="upper left")
         plt.show()
-        #for mnth in range(0, len(pdat.rmonths)):
         plt.errorbar(pdat.ryears, pdat.mvals_by_mnth(7), yerr=pdat.emvals_by_mnth(7), label='Aug')
         plt.legend(loc="upper right")
         plt.show()
@@ -63,7 +62,7 @@ def trivana():
         jfiley = open(outdaty, "w")
         flin1 = {}
         flin2 = {}
-        for yr in pdat.ryears: # Mv this to the class
+        for yr in pdat.ryears:
             in1 = {yr : pdat.mvals_by_year(yr)}
             in2 = {yr : pdat.emvals_by_year(yr)}
             flin1.update(in1)
@@ -91,15 +90,15 @@ class PlotData:
             self.isPanda = True
         else:
             self.isPanda = False
-        self.ryears = range(1970, 2022)  # Readup about dataframes - not proving as easy to use as hoped
+        self.ryears = range(1970, 2022)
         self.rmonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         self.dataset = []  # This is as a fraction
-        self.edataset = [] # This is the Delta-E (no asym.err, but doesn't matter)
+        self.edataset = [] # This is the Delta-E (no asym.err)
         if self.isPanda:
             self.cdata(df)
 
-    def cdata(self, df):  # Using the Panda import frame (try open xcl api as well J.J.)
+    def cdata(self, df):  # Using the Panda import frame
         for i in range(0, len(self.ryears)):  # Years
             year = []
             eyear = []
@@ -109,7 +108,7 @@ class PlotData:
                     mnth = df.iloc[i, j]/total
                     emnth = math.sqrt(mnth*(1.0-mnth)/total) # Simpl. bin errors.
                 except:
-                    print("Fail : divide by zero or something ?")
+                    print("Fail : divide by zero or other issue ?")
                     mnth = -99.9
                     emnth = -99.9
                 year.append(mnth)
@@ -136,7 +135,6 @@ class PlotData:
         return evmnthl
 
     def yindex(self, year):
-        # .index slow so do this more sensibly.
         iniyear = self.ryears[0]
         finyear = self.ryears[-1]
         assert iniyear <= year <= finyear, "Year " + str(year) + \
