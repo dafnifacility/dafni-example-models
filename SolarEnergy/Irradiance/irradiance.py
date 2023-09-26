@@ -56,7 +56,7 @@ class GenModel:
         self.poa_df_dy['Date'] = self.poa_df_dy.index
         self.poa_df_dy = self.poa_df_dy[(self.poa_df_dy['Date'] > '2023-01-01 00:00') & (self.poa_df_dy['Date'] < '2023-01-01 23:59')]
         self.poa_df_dy.index = self.poa_df_dy.index.strftime("%H:%M")
-        # Summer (surely it's possible to do this in pandas without all the copy stuff !!)
+        # Summer
         self.poa_df_dy2['Date'] = self.poa_df_dy2.index
         self.poa_df_dy2 = self.poa_df_dy2[(self.poa_df_dy2['Date'] >= '2023-06-06 00:00') & (self.poa_df_dy2['Date'] < '2023-06-06 23:59')]
         self.poa_df_dy2.index = self.poa_df_dy2.index.strftime("%H:%M")
@@ -84,7 +84,7 @@ class IrData():
 
     def __init__(self):
         self.waypoint = None
-        self.Idataframe = None  # Dont use this do I ? Yeah just use a generic zip below
+        self.Idataframe = None
 
 
 class IrStore():

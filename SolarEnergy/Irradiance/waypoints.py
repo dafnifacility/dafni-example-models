@@ -17,7 +17,7 @@ class FlightPath():
         self.iwaypoints = None
 
     def GenIData(self):
-        # Mark original waypoints as 1 (at some point I think it'll be best to redo this a bit so it's less clunky)
+        # Mark original waypoints as 1
         for waypoint in self.waypoints:
             waypoint.id = 1
         if gDEBUG:
@@ -41,7 +41,7 @@ class FlightPath():
         # Generate wp1 Ir.data
         # Generate set of points between waypoints
         # i) Gen. geodisic (shortest path on ellipsoid) connecting wp1 & wp2
-        gds = Geodesic.WGS84.Inverse(wp1.lat, wp1.lon, wp2.lat, wp2.lon ) # Arg.. bloody typo.. wp1 was usedx3 !!
+        gds = Geodesic.WGS84.Inverse(wp1.lat, wp1.lon, wp2.lat, wp2.lon )
         if gDEBUG:
             print("gds", gds)
         splt = int(gds['s12']/(20.0*1000.0)) - 1  # REM. s12 is in m's
@@ -59,20 +59,9 @@ class FlightPath():
             self.iwaypoints.append(iwp)
 
     def PrintPoints(self):
-        #print("Printing Main Waypoints")
-        #for i, waypoint in enumerate(self.waypoints):
-        #    print("point", i, waypoint.lon, waypoint.lat, waypoint.alt)
         print("Printing Full Set of Waypoints (inc. intermediates)")
         for i, iwaypoint in enumerate(self.iwaypoints):
             print("point", i, iwaypoint.lon, iwaypoint.lat, iwaypoint.alt, iwaypoint.speed, iwaypoint.id)
-
-    def plotcourse(self):
-        #import plotly.express as plx  # Need to pip this & create a flight-path dataframe for plotting.
-        #fig = plx.line_mapbox(self.fpdf, lat="lat", lon="lon", color="State", zoom=3, height=300)
-        #fig.update_layout(mapbox_style="stamen-terrain", mapbox_zoom=2, mapbox_center_lat = 25.0, 
-        #                  margin={"r":0,"t":0,"l":0,"b":0})
-        #fig.show()
-        pass
 
     def SaveIData(self, savf='waypoints.csv'):
         # Loop over all the sub-waypoint data & save it.
@@ -99,11 +88,6 @@ class FlightPath():
             self.iwaypoints.append(tmpwp)
             if tmpwp.id == 1:
                 self.waypoints.append(tmpwp)
-        # Note GenIData will create track of intermediate waypoints. # Naahh better to do this manually !
-        #if len(self.waypoints) == len(self.iwaypoints):
-        #    self.GenIData()
-
-    #def LoadIrData
 
 
 class Waypoint():

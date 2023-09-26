@@ -57,7 +57,6 @@ def main():
 
     xfp, irTest = loaddata()
     # We want to use the earlist time from the index of the irradiance data, rather than setting it twice.
-    # print("Get any index : ", irTest.dflist[0].index[0], type(irTest.dflist[0].index[0]))
     if inp.StartDayTime == "" or inp.StartDayTime == None or inp.StartDayTime == "None":
         inp.StartDayTime = str(irTest.dflist[0].index[0])
     mwaypoints = []  # Setup the main waypoints for aeroplane iteration and movement.

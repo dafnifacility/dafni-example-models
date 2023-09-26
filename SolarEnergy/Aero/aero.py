@@ -57,7 +57,8 @@ class Aeroplane:
         # Note fix the speed to get this working in DAFNI, easy to change later.
         self.CheckSpeed(h=self.position.alt)
         # Get the power (irad) for this position
-        #print("Currently at : ", self.position.lon, self.position.lat, "(travelling to ", ctarget.lon, ctarget.lat, ")")
+        if gDEBUG:
+            print("Currently at : ", self.position.lon, self.position.lat, "(travelling to ", ctarget.lon, ctarget.lat, ")")
         gds = Geodesic.WGS84.Inverse(self.position.lat, self.position.lon, ctarget.lat, ctarget.lon )
         bearing = gds['azi1']
         self.oldpos = self.position
@@ -65,9 +66,10 @@ class Aeroplane:
         dist = self.speed*(self.dt/60.0)*self.convert.get('miles2km')   # distance moved in km. Cvrt mph to kmph. Div by 60 mins for hrs.
         mdist = geopy.distance.distance(kilometers=dist)
         ip = mdist.destination((self.oldpos.lat, self.oldpos.lon), bearing=bearing) # Project forward to new pos. with geopy
-        self.position = Waypoint(lat=ip.latitude, lon=ip.longitude, alt=self.position.alt, speed=self.speed)   # later on . height ... height ... height !!!
+        self.position = Waypoint(lat=ip.latitude, lon=ip.longitude, alt=self.position.alt, speed=self.speed)
         self.time += self.dt
-        print("Moved ", dist, " km towards : ", self.position.lon, self.position.lat, "alt=", self.position.alt )
+        if gDEBUG:
+            print("Moved ", dist, " km towards : ", self.position.lon, self.position.lat, "alt=", self.position.alt )
         return
 
     def AtMWPNode(self, ctarget):
@@ -119,7 +121,7 @@ class Aeroplane:
                 tmpl = []
                 tmpl.append(spd)
                 tmpl.append(self.maxpower)
-                tmpl.append(self.PowerReqHP(Vf=spd*self.convert.get('mph2fps'), h=height)) # KJS wip
+                tmpl.append(self.PowerReqHP(Vf=spd*self.convert.get('mph2fps'), h=height))
                 tspdl.append(tmpl)
             sthtl.append(tspdl)
             self.recordPD.append(sthtl)
@@ -141,7 +143,7 @@ class Aeroplane:
         '''Units (mix of Imp. & SI): velocity in fps, scl (power) in hp, h(eight) in m'''
         return self.PowerReqHP(Vf, h)-scl
 
-    def GetMaxVelocityBounds(self, scl=70.0, h=0.0): # Fix height dependence donem scl is max power ... neaten this
+    def GetMaxVelocityBounds(self, scl=70.0, h=0.0):
         '''Returns the maximum speed in mph (from the power-curve). scl is the max engine power (hp), h in meters'''
         # P(vf) - scl = PowerReqHP(self, Vf) -scl  # hcl & h are fixed params in the root finding
         v2 = optimize.newton(self._GVB_ftn, 100.0, args=(scl, h,))  # 100.0 is a start estimate for the root.
@@ -150,7 +152,7 @@ class Aeroplane:
 
     def GetStall(self, h=0.0):
         '''Returns the stall speed in mph. height in metres'''
-        vs = math.sqrt(2.0*self.weight/(self.AirDensity(h)*self.S*1.5)) # CL_max to 1.5 ? (1-2,  with flaps - no idea ?)
+        vs = math.sqrt(2.0*self.weight/(self.AirDensity(h)*self.S*1.5)) # CL_max set to 1.5
         print("Stall Speed =", vs*self.convert.get('fps2mph'))
         return vs*self.convert.get('fps2mph')
 
@@ -193,7 +195,6 @@ class Aeroplane:
     def CL(self, Vf, h=0.0):
         '''Lift coefficient given vf(fps) and h(m)'''
         CL = self.weight / (0.5 * self.AirDensity(h) * self.S * Vf**2)
-        #print("CL = ", CL)
         return CL
 
     def CD(self, Vf, h=0.0):

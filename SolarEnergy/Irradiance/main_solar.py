@@ -96,7 +96,7 @@ def main():
             datafp = os.path.join(os.path.join(gPATHI, inp.inFile))
         print("Loading journey from Waypoint file, with a start time of", inp.StartDayTime)
         xfp = FlightPath(iniday=inp.StartDayTime)
-        xfp.LoadIData(datafp) # Change this to be just the main points. Then do whatever path.py does !
+        xfp.LoadIData(datafp)
         xfp.GenIData()
         idatafp = os.path.join(os.path.join(gPATHO, "iwaypoints.csv"))
         xfp.SaveIData(idatafp)
