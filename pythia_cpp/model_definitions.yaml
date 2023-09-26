@@ -1,0 +1,20 @@
+kind: M
+api_version: v1beta2
+metadata:
+  display_name: Pythia C++ Test
+  name: kjs-pythia-cpptest
+  publisher: KJS Test
+  summary: >
+    Test running some high energy collisions
+  description: >
+    Test running some high energy collision events using new Pythia C++ code.
+  source_code: inc. later
+
+spec:
+  outputs:
+    datasets:
+      - name: out01.txt
+        type: txt
+        description: >
+          Main log file including ascii graphs
+

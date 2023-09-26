@@ -1,0 +1,39 @@
+kind: Model
+api_version: v1beta1
+metadata:
+  display_name: Pythia f77 Test
+  name: pythia-f77test
+  publisher: DAFNI Test
+  summary: >
+    Test running some high energy collisions
+  description: >
+    Test running some high energy collision events using old Pythia fortran code.
+  source_code: inc. later
+
+spec:
+  inputs:
+    parameters:
+      - name: DECTYP
+        title: Event types (all fermions or all quarks only)
+        type: string
+        default: QALL
+        description: QALL or ALL
+        options:
+          - name: QALL
+            title: All quarks
+          - name: ALL
+            title: All fermions
+        required: True
+      - name: NEVE
+        title: Number of collisions
+        type: integer
+        default: 500
+        description: Number of collisons to simulate
+        required: True
+  outputs:
+    datasets:
+      - name: log.txt
+        type: txt
+        description: >
+          A log file which also contains ascii graphs.
+
