@@ -39,7 +39,7 @@ class Aeroplane:
         self.irrad = 0.0 # Irradiance for iteration
         self.record = []
         self.recordPD = []
-        # Constants (propeff will depend on height - ie. airdensity, to a 1/3 power I think ?)
+        # Constants
         self.pveff = 0.3  # Panel Conv. efficiency, mono-cryst Si cells. (typically ~0.3 ballpark)
         self.chargeff = 0.9    # Typ. 0.6-0.9
         self.motoreff = 0.94   # includes batt->motor losses. 
@@ -219,7 +219,7 @@ class Aeroplane:
         density = rho*self.convert.get("kgpm32slugspft3")
         return density
     
-    def T(self, T0=288.16, a=-0.0065, h=0): # fix this properly @ not 8am. KJS
+    def T(self, T0=288.16, a=-0.0065, h=0):
         '''Temp as ftn of h(m). T0(K) & a(K/m) define the troposphere (ISA St.Atm.)'''
         T = T0 + a*h
         return T
