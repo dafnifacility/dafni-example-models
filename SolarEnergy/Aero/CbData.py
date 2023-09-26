@@ -1,6 +1,7 @@
 import os
 import glob
 import pandas as pd
+from geographiclib.geodesic import Geodesic
 
 DEBUG = False
 
@@ -35,29 +36,26 @@ class IrStore():
             dfout = pd.read_parquet(modeldata)
         return dfout
     
-    def GetNDF(self, position): # Given a time & a place give the POA (plane of array irradiance)
-        # Loop to get closest position (again this can be shortend to speed things up if needed)
-        from geographiclib.geodesic import Geodesic # move up to top later
+    def GetNDF(self, position):
+        '''Returns the nearest irradiance dataframe to position'''
         closep = 26000.0 # km
         closed = None
         for data in self.clist:
             wpdat = data[0]
             gds = Geodesic.WGS84.Inverse(position.lat, position.lon, wpdat.lat, wpdat.lon )
             dpts = gds['s12']/1000.0  # distance between points. Work in km.
-            #print("distance", dpts)
             if dpts < closep:
                 closep = dpts
                 closed = data
-        # Really need to check this is working - is it ok !?
         return closed
-        # Now get the right value for the date & time
 
     def GetIrradiance(self, position=None, datetime=None):
-        '''Takes a waypoint object & a datetime string'''
+        '''Takes a waypoint object & a datetime string, and returns the irradiance'''
         ndf = self.GetNDF(position)
         # Get the right data using the datetime obj, ie. nearest index to datetime
         dt = pd.to_datetime(datetime)
         irow = ndf[1].index.get_indexer([dt], method='nearest')[0]
         irrval = ndf[1].iat[irow, 0]
-        print("Getting Irradiance :", irrval, "at", datetime)
-        return irrval # was 800 # The time bit is working ok I reckon !!
+        if DEBUG:
+            print("Getting Irradiance :", irrval, "at", datetime)
+        return irrval

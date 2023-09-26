@@ -141,7 +141,8 @@ class IrStore():
         dt = pd.to_datetime(datetime)
         irow = ndf[1].index.get_indexer([dt], method='nearest')[0]
         irrval = ndf[1].iat[irow, 0]
-        print("Getting Irradiance :", irrval, "at", datetime)
+        if DEBUG:
+            print("Getting Irradiance :", irrval, "at", datetime)
         return irrval
 
 def testIrList():
