@@ -1,9 +1,11 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Aeroplane model
   name: kjs-test-aero
   publisher: KJS Test
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: >
     Test of Solar aeroplane modeling
   description: >

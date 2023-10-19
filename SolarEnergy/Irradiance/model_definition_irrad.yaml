@@ -1,9 +1,11 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Solar irradiance modeling
   name: kjs-test-solar
   publisher: KJS Test
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: >
     Solar irradiance modeling
   description: >

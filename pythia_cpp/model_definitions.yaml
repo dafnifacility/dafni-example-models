@@ -1,9 +1,11 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Pythia C++ Test
   name: kjs-pythia-cpptest
   publisher: KJS Test
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: >
     Test running some high energy collisions
   description: >

@@ -1,14 +1,18 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Fibonacci
   name: fibonacci
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: Generates a Fibonacci sequence
   description: >
     An example Model designed for use with DAFNI.
 
     This generates a Fibonacci sequence and saves it to a json file.
+  license: https://creativecommons.org/licenses/by/4.0/
+  rights: open
 spec:
   inputs:
     parameters:
