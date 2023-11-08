@@ -4,7 +4,7 @@ metadata:
   display_name: MS Excel Win10 Test
   name: kjs-test-excel
   publisher: KJS Test
-  contact_point_name:  KJS Test
+  contact_point_name:  DAFNI
   contact_point_email: info@dafni.ac.uk
   summary: >
     Test reading in of excel MS spreadsheets, and uploading a basic model scenario.
