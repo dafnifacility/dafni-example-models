@@ -10,7 +10,7 @@ metadata:
   description: >
     A tiny example Model designed for use with DAFNI. This outputs a txt file with "Hello $NAME" where $NAME is a
     configurable input to the Model. $NAME defaults to "World".
-  license: https://creativecommons.org/licenses/by/4.0/
+  licence: https://creativecommons.org/licenses/by/4.0/
   rights: open
 spec:
   inputs:
