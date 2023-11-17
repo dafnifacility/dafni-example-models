@@ -1,13 +1,17 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Hello World
   name: hello-world
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: Echo "Hello $NAME" where $NAME is configurable (defaults to "World").
   description: >
     A tiny example Model designed for use with DAFNI. This outputs a txt file with "Hello $NAME" where $NAME is a
     configurable input to the Model. $NAME defaults to "World".
+  license: https://creativecommons.org/licenses/by/4.0/
+  rights: open
 spec:
   inputs:
     parameters:

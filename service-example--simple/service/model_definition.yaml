@@ -1,10 +1,12 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Service Example
   name: service-example
   type: service
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: Just happily waits doing nothing.
   description: >
     This has a simple sleep call that doesn't ever finish, but doesn't do anything useful. The client will to to "ping"

@@ -1,11 +1,15 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Hello World Matlab Model
   name: hello-world-matlab
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: A hello world model using Matlab
   description: A hello world model using Matlab
+  license: https://creativecommons.org/licenses/by/4.0/
+  rights: open
 spec:
   inputs:
     parameters:

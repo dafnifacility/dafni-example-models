@@ -1,9 +1,11 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: UK Climate Analysis - COMP530
   name: uk-climate-analysis
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: >
     To demonstrate the validation of the user defined hypotheses using Machine learning
     algorithm about climate change in the UK.

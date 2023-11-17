@@ -1,9 +1,11 @@
 kind: Model
-api_version: v1beta1
+api_version: v1beta3
 metadata:
   display_name: Pythia f77 Test
   name: pythia-f77test
   publisher: DAFNI Test
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: >
     Test running some high energy collisions
   description: >

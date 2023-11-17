@@ -1,10 +1,12 @@
 kind: M
-api_version: v1beta2
+api_version: v1beta3
 metadata:
   display_name: Simple Client Access
   name: client-service-access
   type: model
   publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
   summary: Write the ping output to a file
   description: >
     An example service type Model designed for use with DAFNI. Writes the ping output to a file caller ping.txt.
