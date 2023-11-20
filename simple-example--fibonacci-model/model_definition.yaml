@@ -11,7 +11,7 @@ metadata:
     An example Model designed for use with DAFNI.
 
     This generates a Fibonacci sequence and saves it to a json file.
-  license: https://creativecommons.org/licenses/by/4.0/
+  licence: https://creativecommons.org/licenses/by/4.0/
   rights: open
 spec:
   inputs:

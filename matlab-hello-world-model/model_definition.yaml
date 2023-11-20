@@ -8,7 +8,7 @@ metadata:
   contact_point_email: info@dafni.ac.uk
   summary: A hello world model using Matlab
   description: A hello world model using Matlab
-  license: https://creativecommons.org/licenses/by/4.0/
+  licence: https://creativecommons.org/licenses/by/4.0/
   rights: open
 spec:
   inputs:
