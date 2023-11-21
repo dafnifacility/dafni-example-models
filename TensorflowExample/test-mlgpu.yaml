@@ -1,0 +1,35 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: Tensorflow Test Model
+  name: test-tensorflow
+  publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
+  summary: >
+    Test Tensorflow and GPU Running on DAFNI
+  description: >
+    Run Matrix & ML Example (Tensorflow-Keras example) within the DAFNI framework
+  source_code: https://github.com/dafnifacility/dafni-example-models/tree/master/TensorflowExample
+
+spec:
+  resources:
+    use_gpu: true
+  inputs:
+    parameters:
+      - name: ISDAFNI
+        title: Running on DAFNI
+        type: boolean
+        default: True
+        description: True or False
+        required: True
+  outputs:
+    datasets:
+      - name: times.png
+        type: png
+        description: >
+          A png graph showing linear algebra timing (tensorflow)
+      - name: prediction.png
+        type: png
+        description: >
+          A png graph showing image classification predictions (tensorflow)

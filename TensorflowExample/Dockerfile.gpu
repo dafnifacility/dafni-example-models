@@ -1,0 +1,14 @@
+FROM tensorflow/tensorflow:2.1.2-gpu
+
+# Don't use a requirments file here. Let pip sort out matplotlib.
+RUN pip install --upgrade pip
+RUN pip install matplotlib
+
+# Create the data paths.
+RUN mkdir -p /data/inputs/
+RUN mkdir -p /data/outputs/
+
+COPY test-MNIST.py .
+COPY test-gpu-tf.py .
+
+ENTRYPOINT python test-MNIST.py; python test-gpu-tf.py
