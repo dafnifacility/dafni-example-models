@@ -63,6 +63,13 @@ model.compile(optimizer='adam',
 history = model.fit(train_images, train_labels, epochs=10)
 print(history.history.keys())
 
+# Save Model to file (contains weights, config, comp.inf. etc.)
+mod_sfp = os.path.join(gPATHO, "MNIST_model.keras")
+model.save(mod_sfp)
+
+# This model datafile can be loaded using the line of code below
+# model_ld = tf.keras.models.load_model(mod_sfp)
+
 fig, ax = plt.subplots(figsize=(8, 6))
 ax.plot(history.history['loss'], label='Loss fn')
 ax.plot(history.history['accuracy'], label='Accuracy')
