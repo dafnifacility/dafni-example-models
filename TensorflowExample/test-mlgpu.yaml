@@ -33,3 +33,8 @@ spec:
         type: png
         description: >
           A png graph showing image classification predictions (tensorflow)
+      - name: MNIST_model.keras
+        type: keras
+        description: >
+         This is the model file for the ANN containing the network weights, structure etc. 
+         This can be loaded into a program and then used without the need for any further training.
