@@ -10,7 +10,8 @@ metadata:
     Test of Solar aeroplane modeling
   description: >
     Test of Solar aeroplane modeling for Demo
-  source_code: inc. later
+  source_code: https://github.com/dafnifacility/dafni-example-models/blob/master/SolarEnergy/Aero/
+  licence: https://opensource.org/license/bsd-3-clause
 
 spec:
   inputs:
