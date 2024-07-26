@@ -10,7 +10,7 @@ metadata:
     Solar irradiance modeling
   description: >
     Test of Solar irradiance modeling for New Demo
-  source_code: inc. later
+  source_code: https://github.com/dafnifacility/dafni-example-models/blob/master/SolarEnergy/Irradiance/
 
 spec:
   inputs:
