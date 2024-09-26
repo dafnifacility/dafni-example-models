@@ -1,0 +1,6 @@
+
+fibonacci-model/target/
+fibonacci-model/sequence.json
+
+*.tar
+*.tar.gz
