@@ -1,0 +1,59 @@
+{
+    "@context": [
+        "metadata-v1"
+    ],
+    "@type": "dcat:Dataset",
+    "dct:title": "Published from file",
+    "dct:description": "Dataset-description",
+    "dct:identifier": [],
+    "dct:subject": "Biota",
+    "dcat:theme": [],
+    "dct:language": "en",
+    "dcat:keyword": [
+        "At least one needed"
+    ],
+    "dct:conformsTo": {
+        "@id": null,
+        "@type": "dct:Standard",
+        "label": null
+    },
+    "dct:spatial": {
+        "@id": null,
+        "@type": "dct:Location",
+        "rdfs:label": null
+    },
+    "geojson": {},
+    "dct:PeriodOfTime": {
+        "type": "dct:PeriodOfTime",
+        "time:hasBeginning": null,
+        "time:hasEnd": null
+    },
+    "dct:accrualPeriodicity": null,
+    "dct:created": "2021-01-18T09:51:56.096719Z",
+    "dct:creator": [
+        {
+            "@type": "foaf:Organization",
+            "@id": null,
+            "foaf:name": "smile",
+            "internalID": null
+        }
+    ],
+    "dct:publisher": {
+        "@id": null,
+        "@type": "foaf:Organization",
+        "foaf:name": null,
+        "internalID": null
+    },
+    "dcat:contactPoint": {
+        "@type": "vcard:Organization",
+        "vcard:fn": null,
+        "vcard:hasEmail": null
+    },
+    "dct:license": {
+        "@type": "LicenseDocument",
+        "@id": "https: //creativecommons.org/licences/by/4.0/",
+        "rdfs:label": null
+    },
+    "dct:rights": null,
+    "dafni_version_note": "Initial Dataset version"
+}

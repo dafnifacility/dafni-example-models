@@ -1,16 +1,19 @@
 kind: M
 api_version: v1beta3
 metadata:
-  display_name: Fibonacci
-  name: fibonacci
+  display_name: Fibonacci for Sweep Steps
+  name: fibonacci-sweep
   publisher: DAFNI Example Models
   contact_point_name:  DAFNI
   contact_point_email: info@dafni.ac.uk
   summary: Generates a Fibonacci sequence
   description: >
-    An example Model designed for use with DAFNI.
+    An example Model designed for use with DAFNI Sweep Steps.
 
     This generates a Fibonacci sequence and saves it to a json file.
+    The name of the json file will be prefixed in the following way:
+    {sequence length}-{f0 start number}-{f1 start number}-sequence.json
+    this is to allow this Model to work in Sweep steps.
   licence: https://creativecommons.org/licenses/by/4.0/
   rights: open
 spec:
