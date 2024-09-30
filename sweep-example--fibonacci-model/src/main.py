@@ -10,7 +10,7 @@ SEQUENCE_LENGTH_MINIMUM = 2
 SEQUENCE_F0_DEFAULT = 0
 SEQUENCE_F1_DEFAULT = 1
 
-output_folder = Path("./")  # Path("/data/outputs/")
+output_folder = Path("/data/outputs/")
 output_file_name = "sequence.json"
 
 
