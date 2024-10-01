@@ -2,12 +2,14 @@
 
 This is an example model. Here you should describe what the model does.
 
-This particular model generates a Fibonacci sequence and saves it to a file in such a way 
-to allow this Model to function with Sweep steps. e.g.:
+This particular model generates a Fibonacci sequence and saves it to a file. e.g.:
 
 ```
 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...]
 ```
+
+The model has been modified slightly when compared with the simple fibonacci model
+to allow this Model to function with Sweep steps
 
 You can set three inputs:
 
@@ -15,8 +17,12 @@ You can set three inputs:
 - SEQUENCE_F0 - The first number to start the Fibonacci sequence with.
 - SEQUENCE_F1 - The second number to start the Fibonacci sequence with.
 
-The model generates a JSON file containing the sequence:
+The model generates a JSON file containing the sequence, the name of the JSON file will
+be prefixed with the sequence length, f0 start number and f1 start number. This modification
+to the files name such that it depends upon the parameters is what allows the Model to work
+with the Sweep step:
 
+Filename - `{SEQUENCE_LENGTH}-{SEQUENCE_F0}-{SEQUENCE_F1}-sequence.json`
 ```json
 {
   "sequence": [0, 1, 1, 2, 3, 5]
