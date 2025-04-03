@@ -8,8 +8,8 @@ Instructions are given in each model section, but each follows the same principa
 - create a docker container image and zip it up, 
 - then upload this to DAFNI along with the yaml file. 
 
-This is explained further in the DAFNI [help pages](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-create-a-dafni-ready-model/). 
-
+This is explained further in the DAFNI [help pages](https://docs.secure.dafni.rl.ac.uk/docs/How%20to/how-to-create-a-dafni-ready-model/). 
+https://docs.secure.dafni.rl.ac.uk/docs/How%20to/how-to-create-a-dafni-ready-model
 > **Note:** You must also first install Docker on your computer. The open source Docker tools allow you to 'containerise' a model ready to be run on a different computer - thus you prepare the model on your computer, then run it on DAFNI. Docker has an excellent quick start [online guide](https://docs.docker.com/get-started/overview/) which you should read too.
 
 ## General examples
