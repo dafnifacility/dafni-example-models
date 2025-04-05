@@ -1,0 +1,43 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: Fibonacci C++ Model
+  name: fibonacci
+  publisher: DAFNI Example Models
+  contact_point_name: DAFNI
+  contact_point_email: info@dafni.ac.uk
+  summary: Generates a Fibonacci sequence
+  description: >
+    An example Model designed for use with DAFNI.
+
+    This generates a Fibonacci sequence and saves it to a json file.
+  licence: https://creativecommons.org/licenses/by/4.0/
+  rights: open
+spec:
+  command: ["/src/fibonacci"]
+  inputs:
+    parameters:
+      - name: SEQUENCE_LENGTH
+        title: Sequence length
+        description: The number of items in the sequence.
+        type: integer
+        default: 20
+        min: 2
+        required: true
+      - name: SEQUENCE_F0
+        title: F0 start number
+        description: The initial start value for the sequence.
+        type: integer
+        default: 0
+        required: true
+      - name: SEQUENCE_F1
+        title: F1 start number
+        description: The second start value for the sequence.
+        type: integer
+        default: 1
+        required: true
+  outputs:
+    datasets:
+      - name: sequence.json
+        type: json
+        description: A Fibonacci sequence output from the Fibonacci Example Model.
