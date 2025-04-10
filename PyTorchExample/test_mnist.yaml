@@ -1,0 +1,51 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: PyTorch Test Model
+  name: test-pytorch
+  publisher: DAFNI Example Models
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
+  summary: >
+    Test PyTorch and GPU Running on DAFNI
+  description: >
+    Run a PyTorch ML Example within the DAFNI framework
+  source_code: https://github.com/dafnifacility/dafni-example-models
+
+spec:
+  resources:
+    use_gpu: true
+  inputs:
+    parameters:
+      - name: ISDAFNI
+        title: Running on DAFNI
+        type: boolean
+        default: True
+        description: True or False
+        required: True
+  outputs:
+    datasets:
+      - name: predictions.png
+        type: png
+        description: >
+          A png graph showing image classification predictions (pytorch)
+      - name: mnist_model.pth
+        type: pytorch
+        description: >
+         This is the model file for the ANN containing the network weights, structure etc. 
+         This can be loaded into a program and then used without the need for any further training.
+      - name: training.png
+        type: png
+        description: >
+          A png graph showing training metrics (pytorch)
+      - name: clothes.png
+        type: png
+        description: >
+          Sample training data from the MNIST dataset
+      - name: times.png
+        type: png
+        description: >
+          CPU and GPU comparison
+    
+      
+  
