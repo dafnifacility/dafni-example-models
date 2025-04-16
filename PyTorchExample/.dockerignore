@@ -1,0 +1,18 @@
+# Ignore everything except necessary files for building image
+.git
+__pycache__/
+outputs/
+*.tar.gz
+*.tar
+*.zip
+*.egg-info/
+.dvc/
+*.log
+*.md
+*.ipynb
+Dockerfile
+README*
+*.pyc
+*.pyo
+*.pyd
+.dockerignore
