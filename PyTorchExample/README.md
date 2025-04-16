@@ -15,5 +15,5 @@ gzip mnist_pytorch.tar
 The code can be tested locally by running the docker image:
 
 ```bash 
-docker run -v $(pwd)/outputs:/data/outputs mnist_pytorch:to-upload
+docker run --gpus all -v $(pwd)/outputs:/data/outputs mnist_pytorch:to-upload
 ```
