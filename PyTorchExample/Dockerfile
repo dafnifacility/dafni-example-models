@@ -1,32 +1,15 @@
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
+FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 
-# Install Python 3.10 and minimal system dependencies
+# Use the default Python version in the image (likely 3.6 or 3.7)
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python3.10 python3-pip python3-distutils && \
-    ln -sf python3.10 /usr/bin/python3 && \
+    apt-get install -y --no-install-recommends python3-pip python3-distutils && \
     python3 -m pip install --upgrade pip && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Install only uv and minimal dependencies
-RUN pip install uv
-
-COPY pyproject.toml ./
-RUN uv pip install --system -r pyproject.toml \
-    && rm -rf /root/.cache/uv
-
-# Remove docs, tests, examples, __pycache__, etc. (adjust path if needed)
-RUN for d in /usr/local/lib/python3.10/dist-packages /usr/lib/python3/dist-packages; do \
-    if [ -d "$d" ]; then \
-        find "$d" -type d -name 'tests' -exec rm -rf {} +; \
-        find "$d" -type d -name '__pycache__' -exec rm -rf {} +; \
-        find "$d" -type d -name 'test' -exec rm -rf {} +; \
-        find "$d" -type d -name 'docs' -exec rm -rf {} +; \
-        find "$d" -type d -name 'examples' -exec rm -rf {} +; \
-        find "$d" -type f -name '*.pyc' -delete; \
-    fi; \
-done
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
 RUN mkdir -p /data/inputs/ /data/outputs/ && chmod -R 777 /data/outputs/
 

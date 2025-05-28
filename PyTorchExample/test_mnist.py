@@ -1,18 +1,44 @@
+import os
+import logging
+import platform
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
-
-import os
 import numpy as np
 import matplotlib.pyplot as plt
+
+# Set up logging to /data/outputs/run.log
+log_path = "/data/outputs/run.log"
+os.makedirs(os.path.dirname(log_path), exist_ok=True)
+logging.basicConfig(
+    filename=log_path,
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s: %(message)s",
+)
+
+
+# Log system information
+def log_system_info():
+    logging.info(f"Platform: {platform.platform()}")
+    logging.info(f"CPU count: {os.cpu_count()}")
+    logging.info(f"PyTorch version: {torch.__version__}")
+    logging.info(f"CUDA available: {torch.cuda.is_available()}")
+    logging.info(f"CUDA version: {torch.version.cuda}")
+    if torch.cuda.is_available():
+        logging.info(f"CUDA device count: {torch.cuda.device_count()}")
+        for i in range(torch.cuda.device_count()):
+            logging.info(f"CUDA device {i} name: {torch.cuda.get_device_name(i)}")
+
+
+log_system_info()
 
 gPATHI = ""
 gPATHO = ""
 # Pre-amble to setup folders
 isDAFNI = os.environ.get("ISDAFNI")
-print("ISDAFNI Environment variable = ", isDAFNI, type(isDAFNI))
+logging.info(f"ISDAFNI Environment variable = {isDAFNI} {type(isDAFNI)}")
 if isDAFNI == "True":
     if os.name == "nt":
         pren = os.environ.get("HOMEDRIVE")
@@ -20,34 +46,47 @@ if isDAFNI == "True":
         pren = "/"
     gPATHI = os.path.join(pren, "data", "inputs")
     gPATHO = os.path.join(pren, "data", "outputs")
-    print("Running within DAFNI: ", gPATHO)
+    logging.info(f"Running within DAFNI: {gPATHO}")
 else:
-    print("Not running within DAFNI, using run directory")
+    logging.info("Not running within DAFNI, using run directory")
     gPATHO = "/data/outputs"
 
 # Ensure output directory exists
 if not os.path.exists(gPATHO):
     os.makedirs(gPATHO, exist_ok=True)
-print(f"Output directory: {gPATHO}")
+logging.info(f"Output directory: {gPATHO}")
 
 # Check PyTorch version and available devices
-print(f"PyTorch version: {torch.__version__}")
+logging.info(f"PyTorch version: {torch.__version__}")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Using device: {device}")
+logging.info(f"Using device: {device}")
 
 # Define the class names for Fashion MNIST
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
-               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+class_names = [
+    "T-shirt/top",
+    "Trouser",
+    "Pullover",
+    "Dress",
+    "Coat",
+    "Sandal",
+    "Shirt",
+    "Sneaker",
+    "Bag",
+    "Ankle boot",
+]
 
 # Define transformations for the dataset
-transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.5,), (0.5,))
-])
+transform = transforms.Compose(
+    [transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))]
+)
 
 # Load the Fashion MNIST dataset
-train_dataset = datasets.FashionMNIST('./data', train=True, download=True, transform=transform)
-test_dataset = datasets.FashionMNIST('./data', train=False, download=True, transform=transform)
+train_dataset = datasets.FashionMNIST(
+    "./data", train=True, download=True, transform=transform
+)
+test_dataset = datasets.FashionMNIST(
+    "./data", train=False, download=True, transform=transform
+)
 
 # Create data loaders
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=64, shuffle=True)
@@ -60,13 +99,15 @@ for i in range(25):
     img = img.squeeze().numpy()
     # Denormalize the image
     img = img * 0.5 + 0.5
-    plt.subplot(5, 5, i+1)
+    plt.subplot(5, 5, i + 1)
     plt.xticks([])
     plt.yticks([])
     plt.grid(False)
     plt.imshow(img, cmap=plt.cm.binary)
     plt.xlabel(class_names[label])
-plt.savefig(os.path.join(gPATHO, 'clothes.png'))
+plt.savefig(os.path.join(gPATHO, "clothes.png"))
+logging.info(f"Sample images plot saved to {os.path.join(gPATHO, 'clothes.png')}")
+
 
 # Define the neural network model
 class Net(nn.Module):
@@ -81,6 +122,7 @@ class Net(nn.Module):
         x = F.relu(self.fc1(x))
         x = self.fc2(x)
         return x
+
 
 # Initialize the model, loss function, and optimizer
 model = Net().to(device)
@@ -97,48 +139,52 @@ for epoch in range(epochs):
     running_loss = 0.0
     correct = 0
     total = 0
-    
+
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
-        
+
         # Zero the parameter gradients
         optimizer.zero_grad()
-        
+
         # Forward pass
         outputs = model(data)
         loss = criterion(outputs, target)
-        
+
         # Backward pass and optimize
         loss.backward()
         optimizer.step()
-        
+
         # Calculate statistics
         running_loss += loss.item()
         _, predicted = outputs.max(1)
         total += target.size(0)
         correct += predicted.eq(target).sum().item()
-    
+
     epoch_loss = running_loss / len(train_loader)
-    epoch_acc = 100. * correct / total
+    epoch_acc = 100.0 * correct / total
     train_losses.append(epoch_loss)
     train_accuracies.append(epoch_acc)
-    
-    print(f'Epoch {epoch+1}/{epochs}, Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%')
 
-print(f'Training keys: loss and accuracy')
+    logging.info(
+        f"Epoch {epoch + 1}/{epochs}, Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.2f}%"
+    )
+
+logging.info(f"Training keys: loss and accuracy")
 
 # Save the model
 model_path = os.path.join(gPATHO, "MNIST_model.pt")
 torch.save(model.state_dict(), model_path)
+logging.info(f"Model saved to {model_path}")
 
 # Plot training metrics
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.plot(train_losses, label='Loss')
-ax.plot([acc/100 for acc in train_accuracies], label='Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Loss/Accuracy')
+ax.plot(train_losses, label="Loss")
+ax.plot([acc / 100 for acc in train_accuracies], label="Accuracy")
+plt.xlabel("Epoch")
+plt.ylabel("Loss/Accuracy")
 plt.legend()
-plt.savefig(os.path.join(gPATHO, 'training.png'))
+plt.savefig(os.path.join(gPATHO, "training.png"))
+logging.info(f"Training metrics plot saved to {os.path.join(gPATHO, 'training.png')}")
 
 # Evaluate the model on test data
 model.eval()
@@ -156,13 +202,15 @@ with torch.no_grad():
         correct += predicted.eq(target).sum().item()
 
 test_loss /= len(test_loader)
-test_acc = 100. * correct / total
-print(f'\nTest Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.2f}%')
+test_acc = 100.0 * correct / total
+logging.info(f"\nTest Loss: {test_loss:.4f}, Test Accuracy: {test_acc:.2f}%")
+
 
 # Create a probability model for predictions
 def get_probabilities(model, data):
     outputs = model(data)
     return F.softmax(outputs, dim=1)
+
 
 # Get predictions for test images
 model.eval()
@@ -170,6 +218,7 @@ test_images, test_labels = next(iter(test_loader))
 test_images, test_labels = test_images.to(device), test_labels.to(device)
 predictions = get_probabilities(model, test_images)
 predictions = predictions.detach().cpu().numpy()
+
 
 # Helper functions for plotting predictions
 def plot_image(i, predictions_array, true_label, img):
@@ -181,14 +230,19 @@ def plot_image(i, predictions_array, true_label, img):
     plt.imshow(img, cmap=plt.cm.binary)
     predicted_label = np.argmax(predictions_array)
     if predicted_label == true_label:
-        color = 'blue'
+        color = "blue"
     else:
-        color = 'red'
-    
-    plt.xlabel("{} {:2.0f}% ({})".format(class_names[predicted_label],
-                                        100*np.max(predictions_array),
-                                        class_names[true_label]),
-                                        color=color)
+        color = "red"
+
+    plt.xlabel(
+        "{} {:2.0f}% ({})".format(
+            class_names[predicted_label],
+            100 * np.max(predictions_array),
+            class_names[true_label],
+        ),
+        color=color,
+    )
+
 
 def plot_value_array(i, predictions_array, true_label):
     true_label = true_label[i]
@@ -198,18 +252,20 @@ def plot_value_array(i, predictions_array, true_label):
     thisplot = plt.bar(range(10), predictions_array, color="#777777")
     plt.ylim([0, 1])
     predicted_label = np.argmax(predictions_array)
-    thisplot[predicted_label].set_color('red')
-    thisplot[true_label].set_color('blue')
+    thisplot[predicted_label].set_color("red")
+    thisplot[true_label].set_color("blue")
+
 
 # Plot the first X test images, their predicted labels, and the true labels
 num_rows = 5
 num_cols = 3
-num_images = num_rows*num_cols
-plt.figure(figsize=(2*2*num_cols, 2*num_rows))
+num_images = num_rows * num_cols
+plt.figure(figsize=(2 * 2 * num_cols, 2 * num_rows))
 for i in range(num_images):
-    plt.subplot(num_rows, 2*num_cols, 2*i+1)
+    plt.subplot(num_rows, 2 * num_cols, 2 * i + 1)
     plot_image(i, predictions[i], test_labels.cpu().numpy(), test_images)
-    plt.subplot(num_rows, 2*num_cols, 2*i+2)
+    plt.subplot(num_rows, 2 * num_cols, 2 * i + 2)
     plot_value_array(i, predictions[i], test_labels.cpu().numpy())
 plt.tight_layout()
-plt.savefig(os.path.join(gPATHO, 'predictions.png'))
+plt.savefig(os.path.join(gPATHO, "predictions.png"))
+logging.info(f"Predictions plot saved to {os.path.join(gPATHO, 'predictions.png')}")

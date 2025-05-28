@@ -1,8 +1,8 @@
 kind: M
 api_version: v1beta3
 metadata:
-  display_name: PyTorch Test Model
-  name: test-pytorch
+  display_name: PyTorch Example Model
+  name: pytorch-example-model
   publisher: DAFNI Example Models
   contact_point_name:  DAFNI
   contact_point_email: info@dafni.ac.uk
@@ -25,11 +25,15 @@ spec:
         required: True
   outputs:
     datasets:
+      - name: run.log
+        type: text
+        description: >
+          A log file of the model run
       - name: predictions.png
         type: png
         description: >
           A png graph showing image classification predictions (pytorch)
-      - name: mnist_model.pth
+      - name: MNIST_model.pth
         type: pytorch
         description: >
          This is the model file for the ANN containing the network weights, structure etc. 
@@ -42,7 +46,7 @@ spec:
         type: png
         description: >
           Sample training data from the MNIST dataset
-      - name: times.png
+      - name: benchmark.png
         type: png
         description: >
           CPU and GPU comparison
