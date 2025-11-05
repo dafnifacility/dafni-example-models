@@ -3,9 +3,9 @@ import geopy.distance
 from geographiclib.geodesic import Geodesic
 import itertools
 import csv
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
-gDEBUG = True
+gDEBUG = False
 
 class FlightPath():
 
@@ -108,7 +108,7 @@ class Clock():
 
     def __init__(self):
        # Work in utc & worry about local times later.
-       self.time = datetime.utcnow()
+       self.time = datetime.now(timezone.utc)
 
     def AddTime(self, deltat=0.0):
         '''Add delta to time, use this for journey in utc'''

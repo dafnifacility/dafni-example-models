@@ -17,7 +17,7 @@ class IrStore():
         self.waypoints = waypoints
 
     def LoadAllFiles(self, nconv="modeldata_"):
-        lmodeldata = glob.glob(nconv + '*.*')
+        lmodeldata = sorted(glob.glob(nconv + '*.*'))
         if DEBUG:
             print("Data-files that match expression : ", lmodeldata)
         for modeldata in lmodeldata:
