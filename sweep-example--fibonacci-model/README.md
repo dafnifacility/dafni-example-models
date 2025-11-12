@@ -88,11 +88,11 @@ docker run -e SEQUENCE_LENGTH=50 -e SEQUENCE_F0=1 -e SEQUENCE_F1=3 fibonacci-mod
 You will need to create a file from your docker image to upload it. Check out the detailed instructions online at [Docs](https://docs.secure.dafni.rl.ac.uk/docs/how-to/models/how-to-upload-a-model/) but you can create it with:
 
 ```bash
-docker save -o fibonacci-model.tar finbonacci-model
+docker save -o fibonacci-model.tar fibonacci-model
 ```
 
 You can then also compress it before uploading:
 
 ```bash
-gzip example-model.tar
+gzip fibonacci-model.tar
 ```
