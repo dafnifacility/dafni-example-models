@@ -1,0 +1,32 @@
+metadata:
+  details: 
+    title: UK Air Transportation Data MARS – IDCC [your credentials] 
+    description: |
+      The dataset includes all scheduled arrivals and departures for one day at 34 UK airports. Initial stand availability at each airport is set for 12:00 AM (midnight) and is dynamically updated throughout the simulation based on the movement of arriving and departing aircraft. This dataset has been uploaded for use with the Modelling Aviation Resilience Scenarios (MARS) model. It serves as an illustrative example and can be modified to reflect different scenarios, such as changes in diversion priorities, stand availability or variations in contractual agreements. Further information about the dataset is available in the accompanying metadata file. 
+    subject: Transportation
+    theme: Transport networks
+    language: English
+    keywords: aviation, air transportation, airport closure, aircraft, diversion
+  coverage:
+    spatial coverage: Great Britain, United Kingdom
+    temporal coverage: 
+      start date: 06/07/2024
+      end date: 09/07/2024
+  ownership:
+    creator: [put your name here]
+    organisation name: Cranfield University
+    organisation identifier: https://www.cranfield.ac.uk/ 
+    person 1 name: [put your name here]
+    person 1 identifier: [put your identifier here]
+    date created: 03/07/2024
+    publisher:
+      name: Flightradar24
+      identifier: https://www.flightradar24.com/ 
+    source:  Publicly available data pulled from Flightradar24
+    contact point:
+      name: [put your name here]
+      email: [put your email address here]
+    project:
+      name: MARS. Modelling Aviation Resilience Scenarios
+      url: https://www.cranfield.ac.uk/press/news-2024/uk-aviation-resilience-assessed-with-new-data-project 
+      funding: DAFNI
