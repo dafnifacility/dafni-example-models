@@ -1,0 +1,35 @@
+kind: M
+api_version: v1beta3
+metadata:
+  display_name: Single Dataset Download model
+  name: download-tool
+  summary: Download datasets from CEDA archive or Jasmin and run script on it
+  type: model
+  publisher: DAFNI
+  contact_point_name:  DAFNI
+  contact_point_email: info@dafni.ac.uk
+  description: >
+    This model allows you to download datasets directly to DAFNI from CEDA or JASMIN. Allowing you to run training models
+
+spec:
+  inputs:
+    parameters:
+      - name: ISDAFNI
+        title: Running on DAFNI
+        type: boolean
+        default: True
+        description: True or False
+        required: True
+    dataslots:
+      - name: download-args
+        description: >
+          Username/Password/url
+        default:
+          - e7e573e1-40db-48e5-9314-c674b275fa4c
+        path: inputs/
+        required: true
+  outputs:
+      datasets:
+      - name: data
+        type: dir
+        description: downlaoded files
