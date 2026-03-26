@@ -13,19 +13,12 @@ metadata:
 
 spec:
   inputs:
-    parameters:
-      - name: ISDAFNI
-        title: Running on DAFNI
-        type: boolean
-        default: True
-        description: True or False
-        required: True
     dataslots:
       - name: download-args
         description: >
           Username/Password/url
         default:
-          - e7e573e1-40db-48e5-9314-c674b275fa4c
+          - 42e5fda1-4sab-42a5-9234-c644b375sa4c
         path: inputs/
         required: true
   outputs:
