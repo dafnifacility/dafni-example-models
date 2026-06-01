@@ -1,4 +1,4 @@
-kind: Model
+kind: M
 api_version: v1beta3
 metadata:
   display_name: Pythia f77 Test
