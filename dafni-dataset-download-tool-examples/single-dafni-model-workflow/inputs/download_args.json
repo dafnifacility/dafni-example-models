@@ -1,0 +1,6 @@
+{
+	"no_auth":"",
+	"url":"https://dap.ceda.ac.uk/badc/accmip/data/JPL/TES/obs/ACCMIP-fixed/r1i1p3/v1/coConstraintVector/coConstraintVector_ACCMIP-fixed_TES_obs_r1i1p3_200507-200512.nc?download=1",
+	"dest":"/data/outputs/",
+	"checksum":""
+}
