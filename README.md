@@ -18,10 +18,13 @@ Examples designed to show you the basics of creating a model.
  - _[tiny-example--hello-world-model](./tiny-example--hello-world-model)_ 
    - Simplistic linux based model designed to be small in size, it reads one environment variable and outputs a hello message in a text file.
  - _[simple-example--fibonacci-model](./simple-example--fibonacci-model)_ 
-   - Simple Python based model, reading in three environment variables and producing a JSON output file.
+   - Simple Python based model, reading in three environment variables and producing a JSON output file containing a Fibonacci sequence.
  - _[matlab-hello-world-model](./matlab-hello-world-model)_ 
    - Simple hello world example with MATLAB.
- 
+ - _[rust-example--fibonacci-model](./rust-example--fibonacci-model)_ 
+   - Simple Rust based example model. Reads in three environment variables
+    and outputs a JSON file containing a Fibonacci sequence.
+
 ## Advanced examples
 More complete examples using real world models.
  - _[uk-climate-analysis](./uk-climate-analysis)_ 
